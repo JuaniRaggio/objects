@@ -1,0 +1,50 @@
+---
+id: operatorOverloading-python
+aliases:
+  - operatorOverloading-python
+tags:
+  - python
+  - objects
+  - operatoroverloading
+---
+## How to implement operator overloading
+---
+- In this case we are overloading the *add* symbol
+```python
+class Vault:
+    def __init__(self, galleons = 0, sickles = 0, knuts = 0):
+        self.galleons = galleons
+        self.sickles = sickles
+        self.knuts = knuts
+
+    def __str__(self):
+        return f"Galleons: {self.galleons}\nSickles: {self.sickles}\nKnuts: {self.knuts}"
+
+    def __add__(self, other):
+        galleons = self.galleons + other.galleons
+        sickles = self.sickles + other.sickles
+        knuts = self.knuts + other.knuts
+        return Vault(galleons, sickles, knuts)
+
+def main():
+    potter = Vault(100, 50, 25)
+    print(potter)
+    weasly = Vault(25, 50, 100)
+    print(weasly)
+    # total = Vault(
+    #     potter.galleons + weasly.galleons,
+    #     potter.sickles + weasly.sickles,
+    #     potter.knuts + weasly.knuts
+    # )
+    # print(total)
+
+    # The __add__ method allows us doing this:
+    print(potter + weasly)
+
+if __name__ == "__main__":
+    main()
+```
+
+## References
+---
+- [[vault.py]]
