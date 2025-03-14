@@ -1,0 +1,46 @@
+@startuml
+
+abstract class Tarjeta {
+  - CentralSubtes central
+
+  + TarjetaSubte(CentralSubtes central)
+  {abstract} + void viajar()
+  {abstract} # boolean puedoViajar()
+}
+
+class TarjetaSubteFija {
+  - int viajes
+  - void viajar()
+
+
+  + void viajar()
+  # boolean puedoViajar()
+}
+
+class TarjetaSubteRecargable {
+  - double saldo
+
+  + void viajar()
+  # boolean puedoViajar()
+  + void recargar(double monto)
+  + double get_saldo()
+}
+
+class CentralSubtes {
+  - double precio_viaje
+  
+  + CentralSubtes(double precio)
+  + void set_precio_viaje(double nuevo_precio)
+}
+
+note right of Tarjeta
+  No puedo hacer que puedoViajar() sea privado
+  porque no lo podrian ver las subclases
+end note
+
+TarjetaSubte *-- CentralSubtes
+Tarjeta <|-- TarjetaSubteRecargable
+Tarjeta <|-- TarjetaSubteFija
+
+@enduml
+
