@@ -1,6 +1,4 @@
 abstract class GeometricFigure {
-  {abstract} + get_base() double
-  {abstract} + get_height() double
   {abstract} + get_area() double
   {abstract} + get_perimeter() double
 }
@@ -28,6 +26,13 @@ abstract class Triangle {
   + height() double
   + get_area() double
   + get_perimeter() double
+}
+
+class Circle {
+  + Circle(radio : double, center : Point)
+}
+
+class Elipse {
 }
 
 class Point {
