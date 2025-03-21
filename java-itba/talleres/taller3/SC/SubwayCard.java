@@ -16,10 +16,9 @@ public abstract class SubwayCard {
     return this.subway_central;
   }
 
-  public void ride() {
+  public void ride() throws CannotRideException {
     if (!canRide()) {
-      System.err.println("No more rides");
-      return;
+      throw new CannotRideException("No more rides");
     }
     applyCost();
   }
