@@ -1,6 +1,5 @@
 package Ej4;
 
-
 public class B extends A {
   @Override
   public void print(Number num) {
