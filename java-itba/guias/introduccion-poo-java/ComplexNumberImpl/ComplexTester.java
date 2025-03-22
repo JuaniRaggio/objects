@@ -1,6 +1,6 @@
 package ComplexNumberImpl;
 
-public class ComplexTester {
+/*public class ComplexTester {
 
    public static void main(String[] args) {
        ComplexNumber c1 = new ComplexNumber(12d, 5);
@@ -12,4 +12,4 @@ public class ComplexTester {
        System.out.println(c1.plus((double) -3)); // 9.00 + 5.00
    }
 
-}
+}*/
