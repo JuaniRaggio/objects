@@ -8,7 +8,6 @@ public class FixedSubwayCard extends SubwayCard {
     // Para que pueda existir una fixed, si o si tiene que haber una subwayCard
     super(subway_central);
     rides_left = rides;
-    Integer a = new Integer(3);
   }
 
   protected boolean canRide() {

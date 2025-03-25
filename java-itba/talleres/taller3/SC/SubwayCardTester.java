@@ -4,7 +4,6 @@ public class SubwayCardTester {
 
   public static void main(String[] args) {
     SubwayCentral sc = new SubwayCentral(25);
-    SubwayCentral el_enano = new SubwayCentral("Hola");
 
     FixedSubwayCard fsc = new FixedSubwayCard(sc, 2);
     try {
