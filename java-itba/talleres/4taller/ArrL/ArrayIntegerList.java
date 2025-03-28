@@ -19,9 +19,6 @@ public class ArrayIntegerList implements ListImpl.ListInterface <Integer> {
 
   public int get_amount() { return amount; }
 
-  private boolean is_ocupied(int idx) throws IndexOutOfBoundsException {
-    return array_integer_list[idx].equals(null);
-  }
 
   @Override
   public boolean is_empty() { return amount == 0; }
@@ -34,6 +31,10 @@ public class ArrayIntegerList implements ListImpl.ListInterface <Integer> {
           return i;
     }
     return -1;
+  }
+
+  private boolean is_ocupied(int idx) throws IndexOutOfBoundsException {
+    return array_integer_list[idx].equals(null);
   }
 
   @Override
