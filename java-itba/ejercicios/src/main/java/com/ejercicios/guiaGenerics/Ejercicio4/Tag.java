@@ -6,11 +6,6 @@ public class Tag implements HTMLText {
 
   private String tagName, reference;
 
-  // private Tag(HTMLText txt, String tagName) {
-  //   this.txt = txt;
-  //   this.tagName = tagName;
-  // }
-
   public Tag(HTMLText txt, String tagName) {
     this.txt = txt;
     this.tagName = tagName;
