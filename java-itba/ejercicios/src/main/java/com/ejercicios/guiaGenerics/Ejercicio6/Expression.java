@@ -1,19 +1,25 @@
 package com.ejercicios.guiaGenerics.Ejercicio6;
 
-public abstract class Expression {
+public class Expression {
 
-  private boolean proposition;
+  private SimpleExpression prop;
 
-  public void setValue(boolean p) {
-    proposition = p;
+  public Expression(SimpleExpression ex) {
+    prop = ex;
   }
 
-  public boolean evaluate() { return proposition; }
+  public boolean evaluate() {
+    return prop.evaluate();
+  }
 
-  public abstract Expression not();
+  public Expression not();
 
-  public abstract Expression or(Expression ex);
+  public Expression or(Expression ex) {
 
-  public abstract Expression and(Expression ex);
+  }
+
+  public Expression and(Expression ex) {
+
+  }
 
 }

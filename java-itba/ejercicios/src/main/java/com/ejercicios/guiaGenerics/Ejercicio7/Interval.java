@@ -2,7 +2,9 @@ package com.ejercicios.guiaGenerics.Ejercicio7;
 
 public class Interval {
 
-  private long size, intervals;
+  private Interval[] interval;
+
+  private long size;
 
   private double increment, start, end;
 
@@ -32,7 +34,7 @@ public class Interval {
     this.end = end;
     this.increment = increment;
     this.size = 0;
-    this.intervals = (long) Math.floor((end - start) / increment);
+    this.interval = new Interval[(int) Math.floor((end - start) / increment)];
   }
 
   public long size() { return size; }

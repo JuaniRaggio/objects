@@ -2,31 +2,23 @@ package com.ejercicios.guiaGenerics.Ejercicio6;
 
 public class SimpleExpression {
 
-  private Expression proposition;
+  private boolean value;
 
   public SimpleExpression(boolean p) { setValue(p); }
 
-  public SimpleExpression(Expression ex) {
-    proposition = ex;
-  }
+  public boolean evaluate() { return value; }
+
+  public void setValue(boolean p) { value = p; }
 
   public Expression not() {
-    return new SimpleExpression(!proposition.evaluate());
   }
 
   public Expression or(Expression ex) {
-    return new SimpleExpression(proposition.evaluate() || ex.evaluate());
+    
   }
 
   public Expression and(Expression ex) {
-    return new SimpleExpression(proposition.evaluate() && ex.evaluate());
-  }
 
-  public Expression evaluate() {
-    return proposition;
   }
-
-  @Override
-  public void setValue(boolean p) { proposition.setValue(p); }
 
 }
