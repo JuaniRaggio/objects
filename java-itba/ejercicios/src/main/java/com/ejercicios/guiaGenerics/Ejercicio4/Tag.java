@@ -9,7 +9,6 @@ public class Tag implements HTMLText {
   public Tag(HTMLText txt, String tagName) {
     this.txt = txt;
     this.tagName = tagName;
-    // this(txt, tagName);
     this.reference = "";
   }
 
