@@ -1,5 +1,7 @@
 package BankAccountPKG;
 
+import java.lang.String;
+
 abstract class BankAccount {
 
   protected int id;
@@ -17,7 +19,7 @@ abstract class BankAccount {
   }
 
   public String toString() {
-    return "Cuenta: %d con saldo %g".formatted(id, balance);
+    return String.format("Cuenta: %d con saldo %g", id, balance);
   }
 
   abstract public void deposit(double amount);

@@ -15,6 +15,9 @@ public class SavingsAccount extends BankAccount {
 
   public void extract(double amount) {
     if (canExtract(amount)) this.balance -= amount;
+    else {
+      throw new RuntimeException("No cuenta con los fondos necesarios");
+    }
   }
 
   public void deposit(double amount) throws IllegalArgumentException {
