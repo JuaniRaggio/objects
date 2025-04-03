@@ -11,7 +11,7 @@ public class FriendsException extends Exception {
 
   @Override
   public String getMessage() {
-    return "Error for number %s: %s".formatted(friend, msg);
+    return String.format("Error for number %s: %s", friend, msg);
   }
 
 }
