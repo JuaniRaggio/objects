@@ -90,7 +90,9 @@ public class Interval {
   }
 
   public boolean equals(Object other) {
-    return other.hashCode() == hashCode();
+    if (this == other) return true;
+    if (other == null || getClass() != other.getClass()) return false;
+    return toString() == other.toString();
   }
 
   public int hashCode() {
