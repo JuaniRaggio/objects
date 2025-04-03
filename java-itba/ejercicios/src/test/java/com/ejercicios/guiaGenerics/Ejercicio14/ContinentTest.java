@@ -7,10 +7,10 @@ public class ContinentTest {
   @Test
    public void continentTester() {
        System.out.println("Densidades de población:");
-       for(Continent continent : Continent.............) {
-           System.out.println("%s = %.2f".formatted(continent, continent.getPopulationRatio()));
+       for(Continent continent : Continent.values()) {
+           System.out.println(String.format("%s = %.2f", continent, continent.getPopulationRatio()));
        }
-       System.out.printf("%.2f", Continent..........("AMERICA").getPopulationRatio());
+       System.out.printf("%.2f", Continent.valueOf("AMERICA").getPopulationRatio());
    }
 
 }
