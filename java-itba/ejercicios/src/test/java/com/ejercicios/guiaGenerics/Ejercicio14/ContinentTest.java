@@ -1,8 +1,11 @@
 package com.ejercicios.guiaGenerics.Ejercicio14;
 
+import org.junit.jupiter.api.Test;
+
 public class ContinentTest {
 
-   public static void main(String[] args) {
+  @Test
+   public void continentTester() {
        System.out.println("Densidades de población:");
        for(Continent continent : Continent.............) {
            System.out.println("%s = %.2f".formatted(continent, continent.getPopulationRatio()));
