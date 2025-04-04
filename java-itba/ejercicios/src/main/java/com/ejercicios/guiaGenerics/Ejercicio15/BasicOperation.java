@@ -9,19 +9,14 @@ public enum BasicOperation {
   MULT("*", (x, y) -> x * y),
   DIV("/", (x, y) -> x / y);
 
-  private final String operand;
+  private Operator op;
 
-  private final BinaryOperator<Double> operation;
-  
   private BasicOperation(String operand, BinaryOperator<Double> operation) {
-    this.operand = operand;
-    this.operation = operation;
+    op = new Operator(operand, operation);
   }
 
-  public String toString() { return operand; }
+  public String toString() { return op.toString(); }
 
-  public double apply(double x, double y) {
-    return operation.apply(x, y);
-  }
+  public double apply(double x, double y) { return op.apply(x, y); }
 
 }
