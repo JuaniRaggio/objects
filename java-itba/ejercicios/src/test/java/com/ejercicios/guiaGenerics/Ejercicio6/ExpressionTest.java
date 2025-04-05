@@ -13,16 +13,16 @@ public class ExpressionTest {
        Expression exp3 = exp1.not();
        Expression exp4 = exp1.or(exp2);
        Expression exp5 = exp3.and(exp4);
-       assertEquals(true, exp1.evaluate());       // true
-       assertEquals(false, exp3.evaluate());       // false
-       assertEquals(true, exp4.evaluate());       // true
-       assertEquals(false, exp5.evaluate());       // false
+       assertEquals(true, exp1.evaluate());
+       assertEquals(false, exp3.evaluate());
+       assertEquals(true, exp4.evaluate());
+       assertEquals(false, exp5.evaluate());
        exp1.setValue(false);
-       assertEquals(true, exp3.evaluate());       // true
-       assertEquals(false, exp4.evaluate());       // false
-       assertEquals(false, exp5.evaluate());       // false
+       assertEquals(true, exp3.evaluate());
+       assertEquals(false, exp4.evaluate());
+       assertEquals(false, exp5.evaluate());
        exp2.setValue(true);
-       assertEquals(true, exp5.evaluate());       // true
+       assertEquals(true, exp5.evaluate());
    }
 
 }

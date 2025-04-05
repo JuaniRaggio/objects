@@ -11,8 +11,22 @@ public enum ExtendedOperation {
       y--;
     }
     return result;
-  }),
-  MOD("%", (x, y) -> x % y);
+  }){
+    @Override
+    public void hola() {
+      // Aca iria la implementacion
+      return;
+    }
+  },
+  MOD("%", (x, y) -> x % y) {
+    @Override
+    public void hola() {
+      // Aca iria la implementacion
+      return;
+    }
+  };
+
+  public abstract void hola();
 
   private final Operator op;
 
