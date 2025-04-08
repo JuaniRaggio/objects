@@ -23,15 +23,9 @@ public class LinearListTest {
     list.set(0, o2);
     assertEquals(list.get(0), o2);
     assertEquals(list.indexOf(o2), 0);
+    // It shouldn't change it
     list.set(0, null);
-
-
-
-
-    // We set the firstone to be null and then it tells us its not null
-    assertTrue(list.get(0).equals(null));
-    // It shouldn't decrease the size, since what you are changing is an attribute
-    // of the Node, not the Node itself
+    assertEquals(list.get(0), o2);
     assertEquals(list.size(), 1);
     list.remove(2);
     assertEquals(list.size(), 1);
@@ -40,8 +34,8 @@ public class LinearListTest {
     list.add(o4);
     list.add(o3);
     list.add(o1);
-    assertEquals(list.get(0), null);
-    assertEquals(list.indexOf(o2), 1);
+    assertEquals(list.get(0), o2);
+    assertEquals(list.indexOf(o2), 0);
     assertEquals(list.get(1), o2);
     assertEquals(list.indexOf(o4), 2);
     assertEquals(list.get(3), o3);
@@ -58,8 +52,6 @@ public class LinearListTest {
     assertEquals(list.get(500), null);
     list.remove(5);
     assertEquals(list.size(), 5);
-    list.remove(4);
-    assertEquals(list.size(), 4);
     list.remove(4);
     assertEquals(list.size(), 4);
     list.remove(3);

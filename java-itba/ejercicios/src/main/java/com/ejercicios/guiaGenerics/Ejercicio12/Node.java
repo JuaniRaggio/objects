@@ -37,7 +37,6 @@ public class Node {
       next = new Node(o);
       return next;
     }
-    // This shouldn't happen in our implementation but just in case
     return next.addAndReturn(o);
   }
 

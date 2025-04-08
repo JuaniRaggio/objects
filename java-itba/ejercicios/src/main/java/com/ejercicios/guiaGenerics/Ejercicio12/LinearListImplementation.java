@@ -39,7 +39,11 @@ public class LinearListImplementation implements LinearList {
     }
     resetIterator();
     while (i-- > 0) {
-      iterator = iterator.getNext();
+      try {
+        iterator = iterator.getNext();
+      } catch (NullPointerException e) {
+        return null;
+      }
     }
     // If a leq 0 index is sent, the first item will be returned
     return iterator.getNodeValue();
@@ -59,6 +63,8 @@ public class LinearListImplementation implements LinearList {
   public void remove(int i) {
     if (i < 0 || i > size || emptyList()) return;
     head = head.rmNodeAtIndex(i);
+    /* TODO -> size is deacreasing everytime, so how could we change that 
+     * also last is not updating correctly */
     size--;
   }
 
@@ -71,6 +77,7 @@ public class LinearListImplementation implements LinearList {
       if (iterator.getNodeValue().equals(obj)) {
         return i;
       }
+      iterator = iterator.getNext();
     }
     return -1;
   }
