@@ -1,7 +1,6 @@
 package com.talleres.tallerFerrys;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class LastDockedFerry extends TimeLimitedFerryPort {
 

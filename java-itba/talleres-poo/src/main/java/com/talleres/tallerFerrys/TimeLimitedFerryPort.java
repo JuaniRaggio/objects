@@ -14,23 +14,15 @@ public class TimeLimitedFerryPort extends Port {
   }
 
   private boolean isOpened(LocalTime time) {
-    return time.compareTo(open) > 0 && time.compareTo(close) < 0;
+    return time.compareTo(open) >= 0 && time.compareTo(close) <= 0;
   }
 
-  @Override
   public void dock(Ferry ferry, LocalTime time) {
-    if (!canDock(ferry) || !isOpened(time)) {
-      throw new RuntimeException();
-    }
-    ++ocupiedDocks;
+    super.dock(() -> canDock(ferry) && isOpened(time));
   }
 
-  @Override
   public void undock(Ferry ferry, LocalTime time) {
-    if (!canDock(ferry) || !isOpened(time)) {
-      throw new RuntimeException();
-    }
-    --ocupiedDocks;
+    super.undock(() -> canUndock(ferry));
   }
 
 }

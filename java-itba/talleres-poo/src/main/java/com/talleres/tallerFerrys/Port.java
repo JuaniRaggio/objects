@@ -1,6 +1,6 @@
 package com.talleres.tallerFerrys;
 
-import java.time.LocalTime;
+import java.util.function.Supplier;
 
 public abstract class Port {
 
@@ -14,24 +14,34 @@ public abstract class Port {
     this.docks = docks;
   }
 
-  private boolean isEmptyFerryPort() { return ocupiedDocks == 0; }
+  private Boolean isEmptyFerryPort() { return ocupiedDocks == 0; }
   
-  private boolean isFullFerryPort() { return ocupiedDocks == docks; }
+  private Boolean isFullFerryPort() { return ocupiedDocks == docks; }
 
-  private boolean isCertifiedCompany(Ferry ferry) {
+  private Boolean isCertifiedCompany(Ferry ferry) {
     return ferry.getCompany().equals(company);
   }
 
-  protected boolean canDock(Ferry ferry) {
+  protected Boolean canDock(Ferry ferry) {
     return !isFullFerryPort() && isCertifiedCompany(ferry);
   }
 
-  protected boolean canUndock(Ferry ferry) {
+  protected Boolean canUndock(Ferry ferry) {
     return !isEmptyFerryPort() && isCertifiedCompany(ferry);
   }
 
-  public abstract void dock(Ferry ferry, LocalTime time);
+  protected void dock(Supplier<Boolean> conditionToDock) {
+    if (!conditionToDock.get()) {
+      throw new RuntimeException();
+    }
+    ++ocupiedDocks;
+  }
 
-  public abstract void undock(Ferry ferry, LocalTime time);
+  protected void undock(Supplier<Boolean> conditionToUndock) {
+    if (!conditionToUndock.get()) {
+      throw new RuntimeException();
+    }
+    --ocupiedDocks;
+  }
 
 }

@@ -9,17 +9,11 @@ public class FerryPort extends Port {
   }
 
   public void dock(Ferry ferry, LocalTime time) {
-    if (!canDock(ferry)) {
-      throw new RuntimeException();
-    }
-    ++ocupiedDocks;
+    super.dock(() -> canDock(ferry));
   }
 
   public void undock(Ferry ferry, LocalTime time) {
-    if (!canUndock(ferry)) {
-      throw new RuntimeException();
-    }
-    --ocupiedDocks;
+    super.undock(() -> canUndock(ferry));
   }
 
 }
