@@ -10,9 +10,9 @@ public class PairTest {
   @Test
   public void pairTest() {
     Pair<String, Double> stringDoublePair = new Pair<>("hola", 0.1);
-    assertEquals("{hola, 0.1}", stringDoublePair);
+    assertEquals("{hola, 0.1}", stringDoublePair.toString());
     Pair<Integer, Integer> integerIntegerPair = new Pair<>(1, 2);
-    assertEquals("{1, 2}", integerIntegerPair);
+    assertEquals("{1, 2}", integerIntegerPair.toString());
     assertTrue(stringDoublePair.equals(new Pair<>("hola", 0.1)));
     Pair otherPair = new Pair(1f, "mundo");
     System.out.println(otherPair);
