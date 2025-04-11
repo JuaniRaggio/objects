@@ -9,7 +9,7 @@ public class FerryCompany {
 
   @Override
   public boolean equals(Object ferry) {
-    return ferry instanceof FerryCompany fC && name == fC.toString();
+    return ferry instanceof FerryCompany fC && name.equals(fC.toString());
   }
 
    @Override
