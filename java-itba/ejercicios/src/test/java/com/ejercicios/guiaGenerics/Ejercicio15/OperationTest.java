@@ -14,8 +14,7 @@ public class OperationTest {
     int i = 0;
 
     for (BasicOperation operation : BasicOperation.values()) {
-      ops[i] = operation.apply(x, y);
-      System.out.printf("%.2f %s %.2f = %.2f\n", x, operation, y, ops[i++]);
+      ops[i++] = operation.apply(x, y);
     }
     double[] expected = {6.00, 2.00, 8.00, 2.00};
     assertArrayEquals(expected, ops);
@@ -23,8 +22,7 @@ public class OperationTest {
     i = 0;
     double[] ops2 = new double[2];
     for (ExtendedOperation operation : ExtendedOperation.values()) {
-      ops2[i] = operation.apply(x, y);
-      System.out.printf("%.2f %s %.2f = %.2f\n", x, operation, y, ops2[i++]);
+      ops2[i++] = operation.apply(x, y);
     }
     double[] expected2 = {16.00, 0.00};
     assertArrayEquals(expected2, ops2);
