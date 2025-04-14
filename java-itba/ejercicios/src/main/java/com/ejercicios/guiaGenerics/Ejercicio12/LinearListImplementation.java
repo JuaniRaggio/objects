@@ -5,6 +5,8 @@ package com.ejercicios.guiaGenerics.Ejercicio12;
 // indice, etc. Por eso la primer implementacion que habia hecho habia sido
 // en forma de Array
 
+// TODO Mejorar esta implementacion usando clases anidadas, es un tema del
+// que no estaba al tanto al momento de hacer esta solucion
 public class LinearListImplementation implements LinearList {
 
   private int size;
