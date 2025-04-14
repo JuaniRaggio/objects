@@ -18,6 +18,10 @@ public enum Continent {
     this.area = area;
   }
 
+  public int getPopulation() {
+      return population;
+  }
+
   public double getPopulationRatio() {
     return (double) population / area;
   }
