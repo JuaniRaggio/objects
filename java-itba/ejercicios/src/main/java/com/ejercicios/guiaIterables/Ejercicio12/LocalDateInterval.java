@@ -1,51 +1,43 @@
 package com.ejercicios.guiaIterables.Ejercicio12;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LocalDateInterval implements Iterable<LocalDate> {
 
-  private LocalDate[] interval;
-
-  private void create(LocalDate startingDay, LocalDate finishingDay, long stepSize) {
-    // The plus 1 if so that the last day is included
-    int days = ((int) Math.divideExact(ChronoUnit.DAYS.between(startingDay, finishingDay), stepSize)) + 1;
-    interval = new LocalDate[days];
-  }
-
-  private void setDates(LocalDate startingDay, LocalDate finishingDay, long stepSize) {
-    LocalDate dates = LocalDate.of(startingDay.getYear(), startingDay.getMonth(), startingDay.getDayOfMonth());
-    for (int i = 0; i < interval.length; ++i) {
-      interval[i] = dates.plusDays(i * stepSize);
-    }
-  }
+  private final LocalDate start, finish;
+  private final long stepSize;
 
   public LocalDateInterval(LocalDate startingDay, LocalDate finishingDay, long stepSize) {
-    create(startingDay, finishingDay, stepSize);
-    setDates(startingDay, finishingDay, stepSize);
+    if (stepSize == 0)
+      throw new IllegalArgumentException();
+    this.start = startingDay;
+    this.finish = finishingDay;
+    this.stepSize = stepSize;
   }
 
   @Override
   public Iterator<LocalDate> iterator() {
-      return new Iterator<LocalDate>() {
+    return new Iterator<LocalDate>() {
 
-        private int currentIdx = 0;
+      private LocalDate currentIdDate = start;
 
-        @Override
-        public boolean hasNext() {
-            return currentIdx < interval.length;
-        }
+      @Override
+      public boolean hasNext() {
+        return currentIdDate.isBefore(finish) || currentIdDate.isEqual(finish);
+      }
 
-        @Override
-        public LocalDate next() {
-          if (!hasNext())
-            throw new NoSuchElementException();
-          return interval[currentIdx++];
-        }
+      @Override
+      public LocalDate next() {
+        if (!hasNext())
+          throw new NoSuchElementException();
+        LocalDate returnValue = currentIdDate;
+        currentIdDate = currentIdDate.plusDays(stepSize);
+        return returnValue;
+      }
 
-      };
+    };
   }
 
 }
