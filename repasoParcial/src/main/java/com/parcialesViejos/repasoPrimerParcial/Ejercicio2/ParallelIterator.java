@@ -1,6 +1,9 @@
 package com.parcialesViejos.repasoPrimerParcial.Ejercicio2;
 
-public class ParallelIterator<T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class ParallelIterator<T> implements Iterable<Pair<T>> {
 
   private T[] A, B;
 
@@ -15,5 +18,24 @@ public class ParallelIterator<T> {
     A = collectionA;
     B = collectionB;
   }
-  
+
+  public Iterator<Pair<T>> iterator() {
+    return new Iterator<Pair<T>>() {
+      private int ACurrent = 0, BCurrent = 0;
+
+      @Override
+      public boolean hasNext() {
+        return ACurrent != A.length && BCurrent != B.length;
+      }
+
+      @Override
+      public Pair<T> next() {
+        if (!hasNext()) {
+          throw new NoSuchElementException();
+        }
+        return new Pair<>(A[ACurrent++], B[BCurrent++]);
+      }
+    };
+  }
+
 }
