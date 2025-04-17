@@ -1,10 +1,10 @@
 package com.parcialesViejos.repasoPrimerParcial.Ejercicio2;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ParallelIterator<T> implements Iterable<Pair<T>> {
+public class ParallelIterator<T> {
 
+  private int ACurrent, BCurrent;
   private T[] A, B;
 
   private void verifyNonNullCollection(Object param, String description) {
@@ -17,25 +17,18 @@ public class ParallelIterator<T> implements Iterable<Pair<T>> {
     verifyNonNullCollection(B, "Second");
     A = collectionA;
     B = collectionB;
+    ACurrent = BCurrent = 0;
   }
 
-  public Iterator<Pair<T>> iterator() {
-    return new Iterator<Pair<T>>() {
-      private int ACurrent = 0, BCurrent = 0;
+  public boolean hasNext() {
+    return ACurrent != A.length && BCurrent != B.length;
+  }
 
-      @Override
-      public boolean hasNext() {
-        return ACurrent != A.length && BCurrent != B.length;
-      }
-
-      @Override
-      public Pair<T> next() {
-        if (!hasNext()) {
-          throw new NoSuchElementException();
-        }
-        return new Pair<>(A[ACurrent++], B[BCurrent++]);
-      }
-    };
+  public Pair<T> next() {
+    if (!hasNext()) {
+      throw new NoSuchElementException();
+    }
+    return new Pair<>(A[ACurrent++], B[BCurrent++]);
   }
 
 }
