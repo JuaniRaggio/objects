@@ -5,6 +5,5 @@ package com.ejercicios.guiaIterables.Ejercicio15;
 // estaba asi.
 
 public class CiclicWindowIterator<T> {
-
-  
+  private
 }
