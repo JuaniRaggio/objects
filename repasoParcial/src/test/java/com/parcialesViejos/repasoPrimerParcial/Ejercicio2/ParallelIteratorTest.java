@@ -1,5 +1,7 @@
 package com.parcialesViejos.repasoPrimerParcial.Ejercicio2;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
@@ -14,27 +16,16 @@ public class ParallelIteratorTest {
     ParallelIterator<String> myIterator = new ParallelIterator<>(v1, v2);
     System.out.println(myIterator.next());
     System.out.println(myIterator.next());
-    try {
-      System.out.println(myIterator.next());
-    } catch (NoSuchElementException ex) {
-      System.out.println(ex.getClass());
-    }
+    
+    assertThrows(NoSuchElementException.class, () -> myIterator.next());
 
     System.out.println("##########");
 
-    try {
-      new ParallelIterator<>(null, v2);
-    } catch (Exception ex) {
-      System.out.println(ex.getMessage());
-    }
-
+    assertThrows(RuntimeException.class, () -> new ParallelIterator<String>(null, v2));
+    
     System.out.println("##########");
-
-    try {
-      new ParallelIterator<>(v1, null);
-    } catch (Exception ex) {
-      System.out.println(ex.getMessage());
-    }
+    
+    assertThrows(RuntimeException.class, () -> new ParallelIterator<>(v1, null));
   }
 
 }
