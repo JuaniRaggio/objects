@@ -5,6 +5,7 @@ import java.util.EmptyStackException;
 
 public class ArrayStack<E> implements Stack<E> {
 
+  // Esta forma no es correcta, o no es la que espera la catedra
   private Object[] m_Elements;
   private int m_SavedElements;
   private static final int s_INITIALDIM = 10;
