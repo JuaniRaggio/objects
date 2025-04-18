@@ -41,8 +41,10 @@ public class BuildingTest {
     System.out.println(" ---------- ");
     // 5.0 = Multiplicador U.F. Comercial
     building.setCommercialMult(5.0);
+
     System.out.println(" ---------- ");
     // Expensas para C70 = (20m2 * $150) * 5 = 3000 * 5 = $15000
+    System.out.println(aStore);
   }
 
 }
