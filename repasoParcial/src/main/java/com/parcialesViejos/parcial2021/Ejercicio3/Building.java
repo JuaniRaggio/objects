@@ -4,22 +4,22 @@ public class Building {
 
   private Expenses buildingExpenses;
 
-  private CommercialExpenses cExpenses;
+  private CommercialExpenses commercialExpenses;
 
-  private ResidentialExpenses rExpenses;
+  private ResidentialExpenses residentialExpenses;
 
   public Building() {
     buildingExpenses = new Expenses();
-    cExpenses = new CommercialExpenses();
-    rExpenses = new ResidentialExpenses();
+    commercialExpenses = new CommercialExpenses();
+    residentialExpenses = new ResidentialExpenses();
   }
 
   public FunctionalUnit newResidentialFunctionalUnit(String name, int m2, int rooms) {
-    return new ResidentialUnit(name, m2, rooms, rExpenses, buildingExpenses);
+    return new ResidentialUnit(name, m2, rooms, residentialExpenses, buildingExpenses);
   }
 
-  public FunctionalUnit newCommercialFunctionalUnit(String name, int m2, int rooms) {
-    return new CommercialUnit(name, m2, cExpenses, buildingExpenses);
+  public FunctionalUnit newCommercialFunctionalUnit(String name, int m2) {
+    return new CommercialUnit(name, m2, commercialExpenses, buildingExpenses);
   }
 
   public double getM2Expense() {
@@ -31,19 +31,19 @@ public class Building {
   }
 
   public double getCommercialMult() {
-    return cExpenses.getExpenses();
+    return commercialExpenses.getExpenses();
   }
 
   public void setCommercialMult(double commercialMult) {
-    cExpenses.setExpenses(commercialMult);
+    commercialExpenses.setExpenses(commercialMult);
   }
 
   public double getResidentialRoomExpense() {
-    return rExpenses.getExpenses();
+    return residentialExpenses.getExpenses();
   }
 
   public void setResidentialRoomExpense(double residentialRoomExpense) {
-    rExpenses.setExpenses(residentialRoomExpense);
+    residentialExpenses.setExpenses(residentialRoomExpense);
   }
 
 }
