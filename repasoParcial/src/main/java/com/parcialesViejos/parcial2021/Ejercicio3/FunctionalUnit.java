@@ -2,23 +2,24 @@ package com.parcialesViejos.parcial2021.Ejercicio3;
 
 public abstract class FunctionalUnit {
 
-  private Expenses globalExpenses;
+  private Double m2Mult;
   private String name;
   private int m2;
   protected double total = 0;
 
-  protected FunctionalUnit(String name, int m2, Expenses globalExpenses) {
+  protected FunctionalUnit(String name, int m2, Double globalExpenses) {
     this.name = name;
     this.m2 = m2;
-    this.globalExpenses = globalExpenses;
+    this.m2Mult = globalExpenses;
   }
 
   protected double getGlobalExpenses() {
-    return m2 * globalExpenses.getM2Expense();
+    return m2 * m2Mult;
   }
 
-  protected String toString(String type) {
-    return "%s: U.F. %s ( %d m2 ) : $%g".formatted(type, name, m2, total);
+  @Override
+  public String toString() {
+    return "U.F. %s ( %d m2 ) : $%g".formatted(name, m2, total);
   }
   
 }

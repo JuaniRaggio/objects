@@ -2,48 +2,45 @@ package com.parcialesViejos.parcial2021.Ejercicio3;
 
 public class Building {
 
-  private Expenses buildingExpenses;
+  // Costo por metro cuadrado de las U.F. residenciales y comerciales
+  private Double m2Expense = 100.0;
 
-  private CommercialExpenses commercialExpenses;
+  // Multiplicador sobre total para las U.F. comerciales
+  private Double commercialMult = 3.0;
 
-  private ResidentialExpenses residentialExpenses;
-
-  public Building() {
-    buildingExpenses = new Expenses();
-    commercialExpenses = new CommercialExpenses();
-    residentialExpenses = new ResidentialExpenses();
-  }
+  // Cargo extra por ambiente sobre total para las U.F. residenciales
+  private Double residentialRoomExpense = 200.0;
 
   public FunctionalUnit newResidentialFunctionalUnit(String name, int m2, int rooms) {
-    return new ResidentialUnit(name, m2, rooms, residentialExpenses, buildingExpenses);
+    return new ResidentialUnit(name, m2, rooms, residentialRoomExpense, m2Expense);
   }
 
   public FunctionalUnit newCommercialFunctionalUnit(String name, int m2) {
-    return new CommercialUnit(name, m2, commercialExpenses, buildingExpenses);
+    return new CommercialUnit(name, m2, commercialMult, m2Expense);
   }
 
   public double getM2Expense() {
-    return buildingExpenses.getM2Expense();
+    return m2Expense;
   }
 
   public void setM2Expense(double m2Expense) {
-    buildingExpenses.setM2Expense(m2Expense);
+    this.m2Expense = m2Expense;
   }
 
   public double getCommercialMult() {
-    return commercialExpenses.getExpenses();
+    return commercialMult;
   }
 
   public void setCommercialMult(double commercialMult) {
-    commercialExpenses.setExpenses(commercialMult);
+    this.commercialMult = commercialMult;
   }
 
   public double getResidentialRoomExpense() {
-    return residentialExpenses.getExpenses();
+    return residentialRoomExpense;
   }
 
   public void setResidentialRoomExpense(double residentialRoomExpense) {
-    residentialExpenses.setExpenses(residentialRoomExpense);
+    this.residentialRoomExpense = residentialRoomExpense;
   }
 
 }
