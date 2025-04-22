@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 public class MaxToMinReport<R> extends MinToMaxReport<R> {
 
-  public MaxToMinReport(Comparator<R> cmp) {
+  public MaxToMinReport(Comparator<? super R> cmp) {
     super(cmp.reversed());
   }
   

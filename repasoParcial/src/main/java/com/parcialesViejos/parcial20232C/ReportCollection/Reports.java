@@ -1,7 +1,6 @@
 package com.parcialesViejos.parcial20232C.ReportCollection;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 public class Reports<R> implements ReportCollection<R> {
 

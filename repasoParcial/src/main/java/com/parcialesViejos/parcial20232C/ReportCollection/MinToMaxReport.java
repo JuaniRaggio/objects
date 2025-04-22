@@ -5,9 +5,9 @@ import java.util.Comparator;
 
 public class MinToMaxReport<R> extends Reports<R> {
 
-  private Comparator<R> desiredOrder;
+  private Comparator<? super R> desiredOrder;
 
-  public MinToMaxReport(Comparator<R> cmp) {
+  public MinToMaxReport(Comparator<? super R> cmp) {
     super();
     desiredOrder = cmp;
   }
