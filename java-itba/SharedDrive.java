@@ -16,8 +16,6 @@ public class SharedDrive implements Iterable<SharedFile> {
     return new ArrayList<>(files);
   }
 
-  public SharedDrive[] 
-
   public SharedFile getLastFile() {
     return files.getLast();
   }
