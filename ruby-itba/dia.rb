@@ -27,6 +27,6 @@ end
 
 today = Date.new(14, 5, 2025)
 # Se pone solo el toString
-puts today
+puts(today)
 today.day = 20
-puts today.day
+puts(today.day)
