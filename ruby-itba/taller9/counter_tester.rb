@@ -1,3 +1,6 @@
+# La catedra plantea la herencia al revez
+# tiene sentido porque un multiple counter es un counter
+# pero se repite menos codigo asi
 class MultipleCounter
   def initialize(s)
     @step = s
@@ -13,7 +16,7 @@ class MultipleCounter
   end
 
   def to_s()
-    @count.to_s
+    "Counter vale #{@count.to_s}"
   end
 
   attr_accessor :count
