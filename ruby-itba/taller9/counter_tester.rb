@@ -1,6 +1,4 @@
 # La catedra plantea la herencia al revez
-# tiene sentido porque un multiple counter es un counter
-# pero se repite menos codigo asi
 class MultipleCounter
   def initialize(s)
     @step = s
