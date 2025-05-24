@@ -14,11 +14,11 @@ end
 
 class B < A
   def m_1
-    super # 3
+    super # 4
   end
 
   def m_2
-    super.m_1 # 4
+    super.m_1 # No existe esto, tira un error, super llama siempre al metodo con el mismo nombre
   end
 
   def m_3
