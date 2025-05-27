@@ -11,6 +11,7 @@ class ComplexNumber
   end
 
   def +(other)
+    # TODO Cuando hay que validar parametros y cuando no?
     return nil if other.nil? || !other.is_a?(ComplexNumber)
 
     ComplexNumber.new(@real + other.real, @imaginary + other.imaginary)

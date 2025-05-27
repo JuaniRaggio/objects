@@ -1,9 +1,11 @@
 require_relative 'account'
 class CheckingAccount < Account
   def initialize(account_id, extra)
-    super(account_id)
+    create(account_id)
     @extra = extra
   end
+
+  private
 
   def can_extract?(amount)
     @extra > @balance - amount
