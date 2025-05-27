@@ -14,5 +14,9 @@ class Point
     Math.sqrt((@x - other.x)**2 + (@y - other.y)**2)
   end
 
-  attr_reader :x, :y
+  # TODO
+  # Esto es muyy importante, quiero que los puntos sean protected
+  # ya que solo me interesa tener el reader para distance, cuando quiero
+  # acceder al x e y del other
+  protected attr_reader :x, :y
 end
