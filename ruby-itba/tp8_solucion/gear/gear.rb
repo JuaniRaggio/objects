@@ -8,10 +8,19 @@ class Gear
   #   @cog = cog
   #   @ratio = @chainring, @cog
   # end
-  def initialize(chainring, cog, wheel = nil)
+
+  # Entonces lo que se hace es un parametro que toma un valor default
+  # hasta aca seria el punto C
+  # def initialize(chainring, cog, wheel = nil)
+  #   @chainring = chainring
+  #   @cog = cog
+  #   @wheel = wheel
+  # end
+
+  def initialize(chainring, cog, rim, tire)
+    @wheel = Wheel.new(rim, tire)
     @chainring = chainring
     @cog = cog
-    @wheel = wheel
   end
 
   def ratio
@@ -21,6 +30,8 @@ class Gear
   end
 
   def gear_inches
+    return nil if @wheel.nil?
+
     @wheel.wheel_diameter * ratio
   end
 
