@@ -21,5 +21,13 @@ class Triangle
 
   def perimeter = calculate_base + calculate_height + calculate_hypotenuse
 
-  private :calculate_base, :calculate_height
+  def ==(other)
+    return false unless other.is_a?(Triangle)
+
+    @left_corner == other.left_corner && @right_corner == other.right_corner && @top_corner == other.top_corner
+  end
+
+  protected attr_reader :left_corner, :right_corner, :top_corner
+
+  private :calculate_base, :calculate_height, :calculate_hypotenuse
 end

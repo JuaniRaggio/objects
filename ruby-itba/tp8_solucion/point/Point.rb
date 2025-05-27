@@ -18,5 +18,12 @@ class Point
   # Esto es muyy importante, quiero que los puntos sean protected
   # ya que solo me interesa tener el reader para distance, cuando quiero
   # acceder al x e y del other
-  protected attr_reader :x, :y
+  attr_reader :x, :y
+
+  # Esto es parte del ejercicio 9
+  def ==(other)
+    return false unless other.is_a?(Point)
+
+    @x == other.x && @y == other.y
+  end
 end

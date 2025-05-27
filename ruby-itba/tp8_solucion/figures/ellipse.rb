@@ -20,4 +20,15 @@ class Ellipse
   def to_s
     "Elipse [Centro: #{@center_point}, DMayor: #{@smayor_axis}, DMenor: #{@sminor_axis}]"
   end
+
+  # Esto es parte del ejercicio 9
+  def ==(other)
+    return false unless other.is_a?(Ellipse)
+
+    @center_point == other.center_point && @smayor_axis == other.smayor_axis && @sminor_axis == other.sminor_axis
+  end
+
+  protected
+
+  attr_reader :center_point, :smayor_axis, :sminor_axis
 end

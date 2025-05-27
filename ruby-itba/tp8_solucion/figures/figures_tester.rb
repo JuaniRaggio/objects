@@ -38,3 +38,11 @@ puts my_circle.area
 # Círculo [Centro: {0, 0} , Radio: 3]
 # 18.84955592153876
 # 28.274333882308138
+
+# Test ejercicio 9
+
+my_rectangle = Rectangle.new(Point.new(0, 0), Point.new(2, 4))
+puts my_rectangle == Rectangle.new(Point.new(0, 0), Point.new(2, 4))
+my_circle = Circle.new(Point.new(0, 0), 3)
+puts my_circle == Circle.new(Point.new(0, 0), 3)
+puts my_rectangle == my_circle

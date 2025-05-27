@@ -17,4 +17,15 @@ class Rectangle
   def perimeter = 2 * (base + height)
 
   def to_s = "Rectangulo [ {#{@top_left_corner}, #{@bottom_right_corner}}]"
+
+  # Esto es parte del ejercicio 9
+  def ==(other)
+    return false unless other.is_a?(Rectangle)
+
+    @top_left_corner == other.top_left_corner && @bottom_right_corner == other.bottom_right_corner
+  end
+
+  protected
+
+  attr_reader :top_left_corner, :bottom_right_corner
 end
