@@ -43,5 +43,6 @@ class Account
     "Cuenta #{@id} con saldo #{@balance}"
   end
 
+  private :can_extract?, :create
   attr_reader :id, :balance
 end
