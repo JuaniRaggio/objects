@@ -15,4 +15,6 @@ class Rectangle
   def area = base * height
 
   def perimeter = 2 * (base + height)
+
+  def to_s = "Rectangulo [ {#{@top_left_corner}, #{@bottom_right_corner}}]"
 end

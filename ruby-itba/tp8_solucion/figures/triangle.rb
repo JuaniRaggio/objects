@@ -9,10 +9,7 @@ class Triangle
     @top_corner = top_corner
   end
 
-  def to_s
-    # TODO
-    "Triangulo [ #{@} ]"
-  end
+  def to_s = "Triangulo [ {#{@left_corner}}, {#{@right_corner}}, {#{@top_corner}} ]"
 
   def calculate_base = @left_corner.distance(@right_corner)
 
