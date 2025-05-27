@@ -43,22 +43,22 @@ public class SharedDrive implements Iterable<SharedFile> {
     }
 
     public String getFileName() {
-        return fileName;
+      return fileName;
     }
 
     public String getAssignmentName() {
-        return assignmentName;
+      return assignmentName;
     }
 
     @Override
     public int hashCode() {
       return Objects.hash(fileName, assignmentName);
-    };
+    }
 
     @Override
     public boolean equals(Object obj) {
-      return this
-    };
+      return this;
+    }
 
   };
 
