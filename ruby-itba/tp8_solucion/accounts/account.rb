@@ -23,7 +23,7 @@ class Account
     @balance += amount
   end
 
-  # En la solucion esta asi no entiendo porque
+  # TODO En la solucion esta asi no entiendo porque
   # def extract?(_amount)
   #   raise 'Debe sobreescribir este método'
   # end
