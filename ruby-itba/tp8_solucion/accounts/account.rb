@@ -23,6 +23,11 @@ class Account
     @balance += amount
   end
 
+  # En la solucion esta asi no entiendo porque
+  # def extract?(_amount)
+  #   raise 'Debe sobreescribir este método'
+  # end
+
   def can_extract?(amount)
     # Esta mal hacer esto? entiendo que no
     raise NotImplementedError
