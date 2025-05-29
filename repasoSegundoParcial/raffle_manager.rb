@@ -1,0 +1,7 @@
+class RaffleManager
+
+  def raffles
+    return 'Raffle MAnager is empty'
+  end
+
+end
