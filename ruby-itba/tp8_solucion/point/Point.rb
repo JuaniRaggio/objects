@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 class Point
   def initialize(x, y)
     @x = x
@@ -26,4 +28,11 @@ class Point
 
     @x == other.x && @y == other.y
   end
+
+  def hash
+    [@x, @y].hash
+  end
+
+  alias_method :eql?, :==
+  alias_method :inspect, :to_s
 end

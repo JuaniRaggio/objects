@@ -28,6 +28,13 @@ class Ellipse
     @center_point == other.center_point && @smayor_axis == other.smayor_axis && @sminor_axis == other.sminor_axis
   end
 
+  def hash
+    [@centre_point, @smayor_axis, @sminor_axis].hash
+  end
+
+  alias_method :eql?, :==
+  alias_method :inspect, :to_s
+
   protected
 
   attr_reader :center_point, :smayor_axis, :sminor_axis
