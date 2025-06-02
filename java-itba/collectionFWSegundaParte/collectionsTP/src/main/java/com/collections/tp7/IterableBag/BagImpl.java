@@ -6,7 +6,11 @@ import java.util.Map;
 
 public class BagImpl <T> implements Bag <T> {
 
-  private Map<T, Integer> bag = new HashMap<>();
+  protected Map<T, Integer> bag;
+
+  public BagImpl() {
+    bag = new HashMap<>();
+  }
 
   public void add(T e) {
     bag.putIfAbsent(e, 0);
