@@ -6,6 +6,8 @@ public class MyComparableClass implements Comparable<MyComparableClass> {
   public String sortableIdentifier;
 
   public MyComparableClass(String comparableElement) {
+    if (comparableElement == null)
+      throw new IllegalArgumentException();
     this.elem = comparableElement;
   }
 
