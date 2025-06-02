@@ -10,6 +10,7 @@ import java.util.TreeMap;
 public class HelpDesk {
 
   // No es una PriorityQueue porque el mapa ya mantiene ordenado por el orden ordial del Enum
+  // Si se desea correr el test del ejercicio 9 alcanza con cambiar TreeMap<>(Comparator.reverseOrder()) -> EnumMap<>(ClientType.class)
   private Map<ClientType, LinkedList<HelpTicket>> helpTickets = new TreeMap<>(Comparator.reverseOrder());
 
   public HelpDesk openTicket(ClientType type, String ticketName, String question) {
