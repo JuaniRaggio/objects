@@ -40,4 +40,3 @@ public class MatchCollectionImpl <T> extends ArrayList <T> implements MatchColle
   }
 
 }
-

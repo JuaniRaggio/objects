@@ -30,7 +30,8 @@ public class ReimbursementTracker {
   }
 
   public void registerClient(String name, int max) {
-    checkCurrentClient(name);
+    if (isCurrentClient(name))
+      throw new IllegalArgumentException("ClientAlready registered");
     clients.put(name, new ClientData(max, name));
   }
 

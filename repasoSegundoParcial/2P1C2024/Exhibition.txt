@@ -4,7 +4,6 @@ class Exhibition
    @theme = theme
  end
 
-
  def to_s
    "Exhibition #{@name} of theme #{@theme}"
  end
@@ -13,28 +12,37 @@ end
 class Museum
 
   def initialize
-    @pavilions = SortedSet.new
+    @pavilions = {}
   end
 
   def add_exhibition(pavilion, name, description)
-    pavilion << Exhibition.new(name, description)
-    @pavilions.delete(pavilion) << Exhibition.new
+    @pavilions[pavilion] = [] unless @pavilions.key?(pavilion)
+    raise 'Cannot add exhibition' unless @pavilions[pavilion].length < pavilion.max && pavilion.can_add?(description)
+    @pavilions[pavilion] << Exhibition.new(name, description)
   end
+
+  def pavilion_exhibits(pavilion) = @pavilions[pavilion]
 
 end
 
 // Type1: Maximum capacity
 class Pavilion
-  include Comparable
 
   def initialize(name, max)
     @name = name
     @max = max
-    @exhibitions = Array.new
   end
 
-  def can_add?(exhibition) = @exhibitions.size <= @max
+  def ==(other)
+    return nil unless other.is_a?(Pavilion)
+    [@name] == [other.name]
+  end
 
+  def can_add?(_description) = true
+
+  alias_method :eql?, :==
+
+  attr_reader :max
 
 end
 
@@ -47,10 +55,7 @@ class ThemedPavilion < Pavilion
     @theme = theme
   end
 
-  def can_add?(exhibition)
-    super(exhibition)
-    exhibition.
-  end
+  def can_add?(description) = @theme == description
 
 end
 
