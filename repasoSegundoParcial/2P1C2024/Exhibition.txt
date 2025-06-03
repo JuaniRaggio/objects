@@ -1,0 +1,56 @@
+class Exhibition
+ def initialize(name, theme)
+   @name = name
+   @theme = theme
+ end
+
+
+ def to_s
+   "Exhibition #{@name} of theme #{@theme}"
+ end
+end
+
+class Museum
+
+  def initialize
+    @pavilions = SortedSet.new
+  end
+
+  def add_exhibition(pavilion, name, description)
+    pavilion << Exhibition.new(name, description)
+    @pavilions.delete(pavilion) << Exhibition.new
+  end
+
+end
+
+// Type1: Maximum capacity
+class Pavilion
+  include Comparable
+
+  def initialize(name, max)
+    @name = name
+    @max = max
+    @exhibitions = Array.new
+  end
+
+  def can_add?(exhibition) = @exhibitions.size <= @max
+
+
+end
+
+// Type2: Maximum capacity and Theme
+
+class ThemedPavilion < Pavilion
+
+  def initialize(name, max, theme)
+    super(name, max)
+    @theme = theme
+  end
+
+  def can_add?(exhibition)
+    super(exhibition)
+    exhibition.
+  end
+
+end
+
