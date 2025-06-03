@@ -1,0 +1,50 @@
+public class PlayerScore<S extends Comparable<? super S>> implements Comparable <PlayerScore<S>>{
+   private final String player;
+   private final S score;
+
+
+   public PlayerScore(String player, S score) {
+       this.player = player;
+       this.score = score;
+   }
+
+
+   @Override
+   public String toString() {
+       return "Player %s scored %s".formatted(player, score);
+   }
+
+
+  int compareTo(PlayerScore<S> other) {
+    int ret = other.score.compareTo(this.score);
+    if (ret == 0) {
+      return ret.player.compareTo(other.player);
+    }
+    return ret;
+  }
+
+}
+
+public class ScoreBoard <T extends Comparable<T>> extends TreeMap<T, TreeSet<PlayerScore <T>>>{
+
+  public Iterable <PlayerScore <T>> getTopScores(int xTop) {
+    Iterable<PlayerScore<T>> ret = new ArrayList<>();
+    for (PlayerScore <T> toAdd: this.values()) {
+      ret.add(toAdd);
+      if (--xTop == 0) return ret;
+    }
+    return ret;
+  }
+
+}
+
+// Todo esto
+// Agregar registro de puntaje
+// Ver si existe un registro
+// Cantidad de registros pendientes
+
+// Consultar el mejor puntaje (valor mas alto numerico)
+doubleScoreBoard.getFirst();
+
+// Consultar el peor puntaje (menor valor numerico)
+doubleScoreBoard.getLast();
