@@ -1,0 +1,79 @@
+public enum EVChargerType {
+   ENTRY(5), RAPID(10), SUPER(20);
+
+   private final double kWhCost;
+  
+   EVChargerType(double kWhCost) {
+       this.kWhCost = kWhCost;
+   }
+
+   public double getkWhCost() {
+     return kWhCost;
+   }
+
+}
+
+public class ChargeData {
+
+  private EVChargerType type;
+  private double prizeToPay;
+
+  public ChargeData(EVChargerType type, double prizeToPay) {
+    this.type = type; this.prizeToPay = prizeToPay;
+  }
+
+  public double getPrize() {return prizeToPay;}
+
+  public EVChargerType getType() { return type; }
+
+}
+
+public EVCentral {
+
+  private Map<String, Map<LocalDateTime, EVChargeType>> clients = new HashMap<>();
+  private Map<String, Integer> balances = new HashMap<>(); // Name - TotalBalance Pairs
+
+  private double calculateTotalPrize(EVChargeType type, int hours) {
+    return hours * type.getkWhCost();
+  }
+
+  private void checkIfRegistered(String clientName) {
+    if (!clients.containsKey(clientName))
+      throw new IllegalArgumentException("Client does not exist");
+  }
+
+  private void checkIfAlreadyCharging(String clientName, LocalDateTime ldt) {
+    checkIfRegistered(clientName);
+    if (clients.get(clientName).containsKey(ldt))
+      throw new IllegalArgumentException("Client already charging");
+  }
+
+  public double balance(String clientName) {
+    checkIfRegistered(clientName);
+    return balances.get(clientName);
+  }
+
+  public void register(String clientName) {
+    balances.putIfAbsent(clientName, 0);
+    clients.putIfAbsent(clientName, new TreeMap<>());
+  }
+
+  public void charge(String clientName, LocalDateTime ldt, EVChargerType type, int hours) {
+    checkIfAlreadyCharging(clientName, ldt);
+    clients.get(clientName).put(ldt, type);
+    balances.merge(clientName, calculateTotalPrize(type, hours), Double::sum);
+  }
+
+  public Set<LocalDateTime> getChargeDateTime(String clientName) {
+    checkIfRegistered(clientName);
+    return clients.get(clientName).keySet();
+  }
+
+  public Set<EVChargerType> getChargerTypes(String clientName) {
+    checkIfRegistered(clientName);
+    return clients.get(clientName).values();
+  }
+
+}
+
+

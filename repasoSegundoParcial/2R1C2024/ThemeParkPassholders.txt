@@ -1,0 +1,73 @@
+# No se puede modificar
+class ThemeParkPassholders
+ def initialize(visitor)
+   @visitor = visitor
+   @passes = SortedSet.new
+ end
+
+
+ def add_pass(theme_park, day)
+   raise 'Cannot add pass' unless add_pass?(theme_park, day)
+   @passes << ThemeParkPass.new(theme_park, day)
+ end
+
+
+ def add_pass?(theme_park, day)
+   theme_park.is_a?(String) && day.positive?
+ end
+
+
+ attr_reader :visitor, :passes
+
+
+ private :add_pass?
+end
+
+
+##### Sistema 2
+# No se puede reservar mas de un parque por dia
+# Solo se pueden reservar hasta N dias - Se recibe por parametro al instanciarlo
+class ParkPassholders < ThemeParkPassholders
+
+  def initialize(visitor, day_limit)
+    super(visitor)
+    @days_reserved = []
+    @day_limit = day_limit
+  end
+
+  def add_pass?(theme_park, day)
+    if @days_reserved.include?(day) || @days_reserved.size + 1 > day_limit
+      return false
+    end
+    return super(theme_park, day)
+  end
+
+  def add_pass(theme_park, day)
+    super(theme_park, day)
+    @days_reserved << day
+  end
+
+end
+
+
+##### Sistema 3
+# No se puede reservar un mismo parque mas de una vez
+# Solo se pueden reservar parques de un listado de permitidos - Se recibe por
+# parametro al instanciarlo
+class LimitedParkPassholders < ThemeParkPassholders
+
+  def initialize(visitor, day_limit, available_parks)
+    super(visitior, day_limit)
+    @parks_reserved = {}
+    @parks = available_parks
+  end
+
+  def add_pass?(theme_park, day)
+    if @parks_reserved.key?(day) || !@parks.include?(theme_park)
+      return false
+    end
+    return super(theme_park, day)
+  end
+
+end
+
