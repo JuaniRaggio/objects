@@ -52,7 +52,6 @@ public class TravelGuide {
 
   public void moveLandmark(String countryName, String cityOrigin, String cityDestination, Landmark lm) {
     existCountry(countryName);
-    existCity(countryName, cityDestination, "Destination");
     existCity(countryName, cityOrigin, "Origin");
     existLandmark(countryName, cityOrigin, cityDestination);
     guide.get(countryName).get(cityOrigin).remove(lm);
