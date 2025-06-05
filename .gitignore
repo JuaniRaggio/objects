@@ -2,10 +2,10 @@
 *.iml
 workspace
 out
-.aux
-.log
-.out
-.toc
+*.aux
+*.log
+*.out
+*.toc
 
 # Compiled class file
 *.class
@@ -26,7 +26,7 @@ oop-python
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
-.mtj.tmp/
+*.mtj.tmp/
 
 # Package Files #
 *.jar
@@ -45,8 +45,11 @@ replay_pid*
 target
 
 objetos-hub.org
+
 .primeras*
+
 .DS_Store
+
 java-itba/collectionFWSegundaParte/collectionsTP/.settings
 java-itba/collectionFWSegundaParte/collectionsTP/.classpath
 java-itba/collectionFWSegundaParte/collectionsTP/.project
