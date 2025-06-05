@@ -30,7 +30,7 @@ public class ChargeData {
 
 public EVCentral {
 
-  private Map<String, Map<LocalDateTime, EVChargeType>> clients = new HashMap<>();
+  private Map<String, Map<LocalDateTime, EVChargerType>> clients = new HashMap<>();
   private Map<String, Integer> balances = new HashMap<>(); // Name - TotalBalance Pairs
 
   private double calculateTotalPrize(EVChargeType type, int hours) {
