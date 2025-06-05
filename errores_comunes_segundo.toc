@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}Generales}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}<=>(other) vs ==(other) vs equals(other) - Comparable}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Conclusion de pasaje de no instancia:}{2}{subsubsection.1.1.1}%
+\contentsline {section}{\numberline {2}Java}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Prestarle mucha atencion a la coleccion que se devuelve}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Ruby}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Leer bien los test y \underline {Los codigos que te pueden dar} para que sean parte de tu implementacion}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}to\textsubscript {s}}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Metodos protected}{3}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Clases abstractas}{3}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}{\bfseries \sffamily DONE} DOUBT Aca siempre me tira warnings el ide, entiendo porque es, no entiendo entonces porque estamos forzando a hacerlo de esta manera}{4}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}{\bfseries \sffamily DONE} DOUBT En el ejercicio de Accounts del tp8 no se porque crean un metodo de la siguiente forma:}{4}{subsubsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.5}Colecciones}{4}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}No olvidarse de sobreescribir ==(other) y hash}{5}{subsubsection.3.5.1}%

@@ -1,0 +1,166 @@
+% Created 2025-06-04 Wed 23:44
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Juan Ignacio Raggio}
+\date{\today}
+\title{Errores comunes segundo parcial poo}
+\hypersetup{
+  pdfauthor={Juan Ignacio Raggio},
+  pdftitle={Errores comunes segundo parcial poo},
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 29.4 (Org mode 9.7.29)}, 
+  pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Generales}
+\label{sec:org76c486c}
+\begin{itemize}
+  \item \textbf{No olvidarse de implementar metodos}
+    toString, to\textsubscript{s}, etc.
+  \item Leer muy detenidamente el test y no olvidarse metodos que pidan implementar
+\end{itemize}
+\subsection{<=>(other) vs ==(other) vs equals(other) - Comparable}
+\label{sec:org30518ee}
+\begin{itemize}
+  \item Ojo porque en caso de ruby si a <=> se le pasa un objeto que no es instancia de self, retorna:
+    \textbf{nil}
+
+  \item Si a ==(other) o a equals(other) le pasas una no-instancia-self
+    \textbf{false}
+\end{itemize}
+\subsubsection{Conclusion de pasaje de no instancia:}
+\label{sec:orge7a800b}
+\begin{center}
+  \begin{tabular}{lll}
+    Tipo de metodo & Ruby & Java\\
+    Comparacion & nil & No compila\\
+    Equidad & false & false\\
+  \end{tabular}
+\end{center}
+\section{Java}
+\label{sec:org818f731}
+\subsection{Prestarle mucha atencion a la coleccion que se devuelve}
+\label{sec:org9fc9d4b}
+Es la parte facil pero al hacerla rapido se puede meter la pata
+\begin{itemize}
+  \item \uline{Retornar una Coleccion / Mapa} que cumpla ciertas condiciones
+  \item Acordarse que \[Map\ \neq\ Collection\ \land\ Map\ \nsubseteq\ Iterable\]
+  \item Por lo tanto es muy importante que si tengo que devolver un mapa, devuelvo un mapa, nisiquiera un Iterable porque no es Iterable un Mapa:
+\end{itemize}
+\section{Ruby}
+\label{sec:orgdf982cf}
+\subsection{Leer bien los test y \underline{Los codigos que te pueden dar} para que sean parte de tu implementacion}
+\label{sec:orgc2c4d0e}
+\begin{itemize}
+  \item A veces aparecen clases que tenes que implementar y no son tan explicitas (como en el de passHolder)
+  \item El metodo map puede ser muy util:
+\end{itemize}
+
+\begin{verbatim}
+
+
+class LimitedDaysPassholders < ThemeParkPassholders
+ def initialize(visitor, days_cap)
+   super(visitor)
+   @days_cap = days_cap
+ end
+
+
+ def add_pass?(park, day)
+   # Donde @passes es un SortedSet
+   # y day es un atributo de los objetos que se guardan @passes
+   super && @passes.length < @days_cap &&
+   !@passes.map{ |pass| pass.day }.include?(day)
+ end
+end
+
+\end{verbatim}
+\subsection{to\textsubscript{s}}
+\label{sec:org196c29d}
+\begin{itemize}
+  \item No olvidarse de hacer los to\textsubscript{s}
+  \item Es mejor hacer interpolacion de strings que concatenacion
+\end{itemize}
+\begin{verbatim}
+i = "interpolacion"
+"Esto es una #{i} de strings"
+\end{verbatim}
+\subsection{Metodos protected}
+\label{sec:orgf2f23bc}
+\begin{itemize}
+  \item En caso de que un metodo necesite leer una variable de instancia de otra instancia de la misma clase:
+    Es \textbf{MUY IMPORTANTE} hacer que esos getters sean \texttt{protected} porque sino estariamos leakeando variables sin sentido ( ojo, puede que en algun caso se quiera dejar normal )
+\end{itemize}
+\subsection{Clases abstractas}
+\label{sec:org72e9d32}
+Sabemos de objetos que las clases abstractas \texttt{NUNCA} pueden instanciarse, por lo que el metodo \texttt{initialize} de ruby en una ``clase asbtracta'' a pesar de que no existan formalmente, los vamos a simular haciendo que el initialize tenga siempre la siguiente forma:
+
+\begin{verbatim}
+class pirlas
+  def initialize
+    raise 'Este metodo debe sobreescribirse'
+  end
+
+  Otros metodos del pirlas
+end
+\end{verbatim}
+\subsubsection{{\bfseries\sffamily DONE} DOUBT Aca siempre me tira warnings el ide, entiendo porque es, no entiendo entonces porque estamos forzando a hacerlo de esta manera}
+\label{sec:org4a7a5e7}
+Si, no importan los warnings para clases abstractas
+\subsubsection{{\bfseries\sffamily DONE} DOUBT En el ejercicio de Accounts del tp8 no se porque crean un metodo de la siguiente forma:}
+\label{sec:org742a6ee}
+\begin{verbatim}
+def extract?(_amount)
+  raise '...'
+end
+\end{verbatim}
+\begin{itemize}
+  \item[{$\boxtimes$}] Porque el \_? y porque cuando ``sobreescriben'' este metodo no lo ponen? es para que no tire warnings?
+    El \_ se usa cuando ese parametro no lo vas a usar dentro del metodo
+  \item[{$\boxtimes$}] En el initialize igualmente seguiriamos con el mismo problema
+    Si, no importan los warnings para clases abstractas
+\end{itemize}
+\subsection{Colecciones}
+\label{sec:org7ab8b88}
+\uline{Muy importante}:
+\begin{itemize}
+  \item Es muy comun cuando quiero extraer info de las colecciones, ya sea: Hash, Set, etc. Tener que \textbf{pasarlas a array}, por ejemplo:
+    En este caso, tenemos @bag que es un Hash table y cuando queremos obtener las llaves para ver si estamos en el final, usamos .keys para obtenerlas
+\end{itemize}
+\begin{verbatim}
+def to_s
+  keys = @bag.keys
+  s = ''
+  keys.each {
+    s += "#{it.to_s} => #{@bag[it].to_s}"
+    s += ", " unless it == keys.last
+  }
+  "{#{s}}"
+end
+\end{verbatim}
+\subsubsection{No olvidarse de sobreescribir ==(other) y hash}
+\label{sec:orge293cd6}
+\textbf{Retornan false si other no es instancia}
+\begin{itemize}
+  \item \textbf{OJO} porque cuando solo se sobreescribe al ==(other) \uline{NO OLVIDARSE DEL ALIAS}
+    Como las colecciones usan eql? para comparar, si no lo sobreescribimos no funciona
+\end{itemize}
+\begin{verbatim}
+alias_method :eql?, :==
+\end{verbatim}
+\end{document}
