@@ -2,6 +2,10 @@
 *.iml
 workspace
 out
+.aux
+.log
+.out
+.toc
 
 # Compiled class file
 *.class
