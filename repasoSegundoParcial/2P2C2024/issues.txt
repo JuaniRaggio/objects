@@ -1,0 +1,105 @@
+// Registro de issues
+
+//*** Issue:
+// Titulo
+// Tipo: Enum { B, E, W }
+// MonthDay (son solo de un año)
+
+
+//***
+// addIssue(Titulo, Tipo, MonthDay) -> Agrega la issue en estado pendiente:
+  // solveIssue -> Pasa a estar en estado resuelta
+// issues() -> Retorna todas las incidencias ordenadas:
+  // _por tipo_ (BEW)
+  // _orden cronologico inverso_
+  // _orden alfabetico por titulo_
+
+// issues(Type) -> Retorna todas las incidencias de Type en orden:
+  // _inverso al cronologico_
+  // _alfabetico por titulo_
+
+// Si no existe arrojan error:
+  // getLastestIssue(IssueType)
+  // getOldestIssue(IssueType)
+
+// removeIssue(Issue)
+
+// Estructura: EnumMap<IssueType, <TreeSet<Issue>>>
+
+public enum IssueType {
+  BUG, ENHANCEMENT, WONTFIX
+}
+
+public class Issue implements Comparable<Issue> {
+  private String title;
+  private IssueType type;
+  private MonthDay date;
+  private boolean isPending;
+
+  public Issue(String title, MonthDay date, IssueType type) {
+    this.title = title; this.date = date; this.type = type; this.isPending = true;
+  }
+
+  public int compareTo(Issue other) {
+    int cmp = other.date.compareTo(this.date);
+    if (cmp == 0) {
+      return this.title.compareTo(other.title);
+    }
+    return cmp;
+  }
+  
+  public void solveIssue() {
+    isPending = false;
+  }
+
+  public String toString() {
+    "%s %s: %s (%s)".formatted(date.toString(), type.toString(), title, isPending ? "pending":"resolved");
+  }
+  
+}
+
+public class IssueTracker {
+
+  private EnumMap<IssueType, TreeSet<Issue>> issues = new EnumMap<>();
+
+  private boolean isRegisteredType(IssueType type) {
+    return issues.containsKey(type);
+  }
+
+  public Issue addIssue(String title, MonthDay date, IssueType type) {
+    if (!isRegisteredType(type)) {
+      issues.put(type, new TreeSet<>());
+    }
+    return issues.get(type).put(new Issue(title, date, type));
+  }
+
+  public boolean removeIssue(Issue i) {
+    if (!isRegisteredType(type)) {
+      return false;
+    }
+    return !issues.get(type).remove(i);
+  }
+
+  public Set<Issue> issues() {
+    Set<Issue> returnValue = new TreeSet<>();
+    for (Set<Issue> i : issues.values()) {
+      returnValue.addAll(i);
+    }
+    return returnValue;
+  }
+
+  public Set<Issue> issues(IssueType type) {
+    return issues.getOrDefault(type, new TreeSet<>());
+  }
+
+  public Issue getLastestIssue(IssueType type) {
+    return issues.issues(type).first();
+  }
+
+  public Issue getOldestIssue(IssueType type) {
+     return issues.issues(type).last;
+  }
+
+}
+
+
