@@ -1,6 +1,8 @@
 = Orden y ArrayList
 - No confundir `ArrayList<>()` con el arreglo vanilla de Java $->$ `[]`
-- Cuando se ordena el arreglo vanilla, hay que hacer una copia con su dimension real porque sino estarias desreferenciando NULLs y va a arrojar una `NullPoiinterException`
+- Cuando se ordena el arreglo vanilla, hay que hacer una copia con su dimension
+real porque sino estarias desreferenciando NULLs y va a arrojar una 
+`NullPoiinterException`
 
 De la siguiente forma (en pseudo)
 
@@ -21,5 +23,15 @@ add(Cosa cosa) {
   arrCosas[dim_real++] = cosa;
 }
 
+sorter() {
+  Cosa[] cosasOrdenadas = Arrays.copyOf(arrCosas);
+
+  // Suponiendo que Cosa es comparable
+  Arrays.sort(cosasOrdenadas, Comparator.naturalOrder());
+  // Notemos que el .sort no retorna un arreglo
+  return cosasOrdenadas;
+}
+
 ```
+
 
