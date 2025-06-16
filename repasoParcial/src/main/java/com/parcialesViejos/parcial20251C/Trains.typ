@@ -92,8 +92,10 @@ public static void main(String[] args) {
 
 public class DeparturesBoard {
 
+  private static final int INIT_DIM = 10;
   private LocalTime current;
-  private Departure[] board = new ArrayList<>();
+  private Departure[] board = new Departure[INIT_DIM];
+  private int dim;
 
   public void setCurrentTime(LocalTime time) {
     current = time;
@@ -120,7 +122,7 @@ public class DeparturesBoard {
   }
 
   public Departure[] getDepartures() {
-    return Arrays.copyOf(board);
+    return Arrays.copyOf(board, dim);
   }
 
   public boolean addDeparture(LocalTime departureTime,
@@ -132,6 +134,7 @@ public class DeparturesBoard {
       }
     }
     board.add(toAdd);
+    dim++;
     return true;
   }
 

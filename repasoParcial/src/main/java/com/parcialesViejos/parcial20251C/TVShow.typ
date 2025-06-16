@@ -53,7 +53,7 @@ public class TVShow implements Iterable<TVEpisode> {
   }
 
   public void setEpisodesPerSeason(int ep) {
-    if (ep < 0) {
+    if (ep <= 0) {
       throw new IllegalArgumentException("La cantidad de episodios debe ser positiva");
     }
 
@@ -61,7 +61,7 @@ public class TVShow implements Iterable<TVEpisode> {
   }
 
   public void setSeasons(int seasons) {
-    if (seasons < 0) {
+    if (seasons <= 0) {
       throw new IllegalArgumentException("La cantidad de temporadas debe ser positiva")
     }
     tmp = seasons;
@@ -70,7 +70,7 @@ public class TVShow implements Iterable<TVEpisode> {
   public Iterator<TVEpisode> iterator() {
     return new Iterator<>() {
 
-      private int episodes = ep, seasons = tmp, currentEp = 0, currentSeason = 0;
+      private int episodes = ep, seasons = tmp, currentEp = 1, currentSeason = 1;
 
       @Override
       public boolean hasNext() {
@@ -83,7 +83,7 @@ public class TVShow implements Iterable<TVEpisode> {
           throw new NoSuchElementException();
         }
         if (currentEp == episodes) {
-          currentEp = 0;
+          currentEp = 1;
           currentSeason += 1;
         } else {
           currentEp += 1;
