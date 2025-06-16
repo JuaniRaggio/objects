@@ -1,3 +1,4 @@
+#import "@preview/codly:1.3.0"
 *Atencion*: este ejercicio se realiza de forma ineficiente ya que el objetiivo es entender como funciona Comparable, Comparator, Iterable, Iterator. Usando colecciones se haria muchisimo mas eficiente, pero no es el objetivo.
 = Ejercicio 2 - 3.5 pts
 
@@ -19,6 +20,7 @@ estación.
 
 == Test
 
+#table()[
 ```java
 public static void main(String[] args) {
   // Ejemplo de uso de la clase java.time.LocalTime
@@ -83,6 +85,7 @@ public static void main(String[] args) {
   // 18:35 | Swindown | P03 | DEPARTED
 }
 ```
+]
 
 == Solucion
 
