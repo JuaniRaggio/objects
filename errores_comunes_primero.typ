@@ -25,7 +25,6 @@ add(Cosa cosa) {
 
 sorter() {
   Cosa[] cosasOrdenadas = Arrays.copyOf(arrCosas);
-
   // Suponiendo que Cosa es comparable
   Arrays.sort(cosasOrdenadas, Comparator.naturalOrder());
   // Notemos que el .sort no retorna un arreglo

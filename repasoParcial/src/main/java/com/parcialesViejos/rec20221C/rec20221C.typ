@@ -1,6 +1,6 @@
 = Ejercicio 1 - 3 pts
-```java
 
+```java
 a.m1() = 5;
 a.m2() = 5;
 a.m3() = 5;
@@ -10,7 +10,12 @@ b.m2() = 0;
 b.m3() = StackTraceError;
 
 c.m1() = 9;
+
+// Este esta mal
+// el super se propaga
 c.m2() = 0;
+// La rta correcta es 9
+
 c.m3() = 9;
 
 ```

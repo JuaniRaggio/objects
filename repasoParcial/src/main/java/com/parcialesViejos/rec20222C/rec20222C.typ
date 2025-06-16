@@ -1,5 +1,20 @@
 = Ejercicio 1
 
+```java
+
+a.m1() = 3;
+a.m2() = StackOverflow;
+a.m3 = 3;
+
+b.m1() = 7;
+b.m2() = 7;
+b.m3() = 7;
+
+c.m1() = 7;
+c.m2() = 7;
+c.m3() = StackOverflow;
+
+```
 
 = Ejercicio 2
 
@@ -145,5 +160,143 @@ public class CustomOrderIteration<T extends Comparable<? super T>>
 }
 
 ```
+
+= Ejercicio 3
+
+== Test
+
+```java
+
+
+```
+
+
+== Solucion
+
+Se tienen dos tipos de pases:
+- *AllAccess*: Partidos admitidos por la central, unico uso por partido
+
+- *CountryAccess*: Idem arriba pero se agrega la limitacion de que solo se
+puede asistir a los partidos a los que uno de los dos equipos coincide con
+el _equipo que recibe por parametro_
+
+Como un ContryAccess *NO es* un AllAccess, vamos a tener que crear una clase
+intermediaria (abstracta) que simule el comportamiento en comun de ambas
+
+
+```java
+
+public class FootballMatch {
+
+  private final String teamA, teamB;
+
+  public FootballMatch(String teamA, String teamB) {
+    this.teamA = teamA;
+    this.teamB = teamB;
+  }
+
+  public String getTeamA() {
+    return teamA;
+  }
+
+  public String getTeamB() {
+    return teamB;
+  }
+
+  @Override
+  public boolean equals(Object other) {
+    return other instanceof FootballMatch match &&
+      teamA.compareTo(other.teamA) &&
+      teamB.compareTo(other.teamB);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(teamA, teamB);
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Match %s vs %s", teamA, teamB);
+  }
+
+}
+
+public class FootballCentral {
+  private FootballMatch[] footballMatches;
+
+  public FootballCentral(FootballMatch[] footballMatches) {
+    setFootballMatches(footballMatches);
+  }
+
+  private FootballMatch[] getFootballMatches() {
+    return footballMatches;
+  }
+
+  public void setFootballMatches(FootballMatch[] footballMatches) {
+    this.footballMatches = footballMatches;
+  }
+
+  public boolean belongsIn(FootballMatch footballMatch) {
+    return Central.belongsIn(footballMatches, footballMatch);
+  }
+
+  public static boolean belongsIn(FootballMatch[] matches, FootballMatch footballMatch) {
+    for (FootballMatch value : matches) {
+      if (value.equals(footballMatch)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+}
+
+public abstract class Pass {
+
+  private String name;
+  private FootballCentral central;
+  private FootballMatch[] asistedMatches;
+
+  protected Pass(FootballCentral central) {
+    this.central = central;
+    asistedMatches = new FootballMatch[central.size()];
+  }
+
+  private boolean belongsIn(FootballMatch match) {
+    return Central.belongsIn(asistedMatches, match);
+  }
+
+  public boolean canAccess(FootballMatch match) {
+    return central.belongsIn(match) && !belongsIn(match);
+  }
+
+}
+
+public class AllAccessPass extends Pass {
+
+  public AllAccessPass(FootballCentral central, String name) {
+    super(central, name);
+  }
+
+}
+
+public class CountryPass extends Pass {
+
+  private String team;
+
+  public CountryPass(FootballCentral central, String name, String team) {
+    super(central, name);
+    this.team = team;
+  }
+
+  public boolean canAccess(FootballMatch match) {
+    return super.canAccess(match) && ;
+  }
+
+}
+
+```
+
 
 
