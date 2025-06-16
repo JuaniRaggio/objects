@@ -1,4 +1,3 @@
-#import "@preview/codly:1.3.0"
 *Atencion*: este ejercicio se realiza de forma ineficiente ya que el objetiivo es entender como funciona Comparable, Comparator, Iterable, Iterator. Usando colecciones se haria muchisimo mas eficiente, pero no es el objetivo.
 = Ejercicio 2 - 3.5 pts
 
@@ -95,6 +94,14 @@ public class DeparturesBoard {
 
   private LocalTime current;
   private Departure[] board = new ArrayList<>();
+
+  public void setCurrentTime(LocalTime time) {
+    current = time;
+  }
+
+  pubic LocalTime getTime() {
+    return current;
+  }
 
   public DeparturesBoard(LocalTime time) {
     current = time;
