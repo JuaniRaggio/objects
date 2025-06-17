@@ -98,12 +98,14 @@ public class CustomOrderedIterationTester {
       this.firstName = firstName;
       this.lastName = lastName;
     }
+
     @Override
     public boolean equals(Object o) {
       return this == o || (o instanceof Person person
       && firstName.equals(person.firstName)
       && lastName.equals(person.lastName));
     }
+
     @Override
     public String toString() {
       return String.format("Person %s %s", firstName, lastName);
@@ -124,14 +126,15 @@ public class CustomOrderedIterationTester {
 
 ```java
 
-public class CustomOrderIteration<T extends Comparable<? super T>>
-                                    implemets Iterable<T> {
+// No era necesario que sea iterable porque usamos el equals
+public class CustomOrderIteration<T> implemets Iterable<T> {
+
   private T[] elements;
   private T stopElement;
 
   public CustomOrderIteration(T[] array, Comparator<T> cmp, T stopper) {
     setStopElement(stopper);
-    elements = Arrays.copyOf(array, array.size())
+    elements = Arrays.copyOf(array, array.length)
     Arrays.sort(elements, cmp);
   }
 
@@ -162,14 +165,6 @@ public class CustomOrderIteration<T extends Comparable<? super T>>
 ```
 
 = Ejercicio 3
-
-== Test
-
-```java
-
-
-```
-
 
 == Solucion
 
@@ -250,6 +245,14 @@ public class FootballCentral {
     return false;
   }
 
+  public AllAccessPass buildAllAccessPass(String name) {
+    return new AllAccessPass(this, name);
+  }
+
+  public CountryPass buildCountryPass(this, String name, String team) {
+    return new AllAccessPass(this, name);
+  }
+
 }
 
 public abstract class Pass {
@@ -297,6 +300,4 @@ public class CountryPass extends Pass {
 }
 
 ```
-
-
 

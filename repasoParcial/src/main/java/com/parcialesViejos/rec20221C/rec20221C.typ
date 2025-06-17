@@ -5,9 +5,9 @@ a.m1() = 5;
 a.m2() = 5;
 a.m3() = 5;
 
-b.m1() = StackTraceError;
+b.m1() = StackOverflow;
 b.m2() = 0;
-b.m3() = StackTraceError;
+b.m3() = StackOverflow;
 
 c.m1() = 9;
 
@@ -31,7 +31,6 @@ Se desea:
 
 + Registrar un despegue
 + Obtener despegue x _Orden de insercion_
-+ Obtener una copia de todos los despegues x O = _insercion_
 + Obtener una copia de todos los despegues x O = _parametro_
 + _Iterar_ por oreden de insercion
 
@@ -99,7 +98,7 @@ public class DeparturesCentral implemets Iterable<Departure> {
   }
 
   public Departure getDepartureByIndex(int idx) {
-    if (idx >= dim) {
+    if (idx >= dim || idx < 0) {
       throw new IllegalArgumentException();
     }
     return departures[idx];
@@ -107,10 +106,11 @@ public class DeparturesCentral implemets Iterable<Departure> {
 
   // + Registrar un despegue
   private DeparturesCentral addDeparture(String code, LocalDate date) {
-    if (dim == departures.size()) {
+    if (dim == departures.length) {
       departures = resize(dim + BLOCK);
     }
     departures[dim++] = new Departure(code, date);
+    return this;
   }
 
   // + Obtener despegue x _Orden de insercion_
@@ -120,7 +120,9 @@ public class DeparturesCentral implemets Iterable<Departure> {
   }
 
   public Departure[] departures(Comparator<Departure> cmp) {
-    return Arrays.sort(resize(dim), cmp);
+    Departure[] departures = resize(dim);
+    Arrays.sort(departures, cmp);
+    return departures;
   }
 
   // + Obtener una copia de todos los despegues x O = _parametro_
@@ -157,11 +159,21 @@ public class Departure implemets Comparable<Departure> {
     this.date = date;
   }
 
-  @Override
+  // Esto esta mal, no se porque lo hice asi lei mal el enunciado
+  // era primero cronologico y despues desempata por codigo alfabeticamente
+  // @Override
+  // public int compareTo(Departure other) {
+  //   int cmp = code.compareTo(other.code);
+  //   if (cmp == 0) {
+  //     return other.date.comapreTo(date);
+  //   }
+  //   return cmp;
+  // }
+
   public int compareTo(Departure other) {
-    int cmp = code.compareTo(other.code);
+    int cmp = date.compareTo(other.date);
     if (cmp == 0) {
-      return other.date.comapreTo(date);
+      cmp = code.compareTo(other.date);
     }
     return cmp;
   }
@@ -289,8 +301,11 @@ public class CoffeCard {
           formatted(cardNumber, name, currentPoints);
   }
 
+  // La diferencia es que agreguan esta operacion directo para que la haga el
+  // enum
   public void purchase(double amount) {
-    currentPoints += type.summer(central.promotion(type.multiplier(amount)));
+    currentPoints += 
+          type.summer(central.getPromotion().apply(type.multiplier(amount)));
   }
 
 }
@@ -304,6 +319,8 @@ public class CoffeRewards {
     setPointsPromotion(promo);
   }
 
+  public Function<Double, Double> getPromotion() { return promotion; }
+
   public void setPointsPromotion(Function<Double, Double> promo) {
     promotion = promo;
   }
@@ -315,8 +332,4 @@ public class CoffeRewards {
 }
 
 ```
-
-
-
-
 
