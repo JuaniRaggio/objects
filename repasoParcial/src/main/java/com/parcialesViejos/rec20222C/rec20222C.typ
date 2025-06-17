@@ -190,6 +190,10 @@ public class FootballMatch {
     this.teamB = teamB;
   }
 
+  public boolean belongsTeam(String team) {
+    return teamA.equals(team) || teamB.equals(team);
+  }
+
   public String getTeamA() {
     return teamA;
   }
@@ -294,7 +298,7 @@ public class CountryPass extends Pass {
   }
 
   public boolean canAccess(FootballMatch match) {
-    return super.canAccess(match) && ;
+    return super.canAccess(match) && match.belongsTeam(team);
   }
 
 }
