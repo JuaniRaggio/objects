@@ -60,10 +60,12 @@ public abstract class WordCountCatalog implements Iterable<WordCount> {
   }
 
   public WordCountCatalog add(WordCount word) {
-    if (dim == words.size()) {
+    // Recordar .size() no existe en [], es .length
+    if (dim == words.length) {
       words = resize(dim + BLOCK);
     }
     words[dim++] = word;
+    return this;
   }
 
   public WordCount getByIndex(int idx) {
@@ -184,17 +186,18 @@ public abstract class Pass {
 
   protected abstract boolean canAfford(BikeType bike);
 
-  protected abstract void pay(BikeType bike);
+  protected boolean canRide(BikeType bike) {
+    return usess < bike.getMinumumRequired();
+  }
 
   protected void checkRideStatus(BikeType bike) {
-    if (usess < bike.getMinumumRequired() || !canAfford()) {
+    if (!canRide(bike) || !canAfford()) {
       throw new CannotRideBikeException();
     }
   }
 
   public void ride(BikeType bike) {
     checkRideStatus(bike);
-    pay(bike);
     usess++;
   }
 
@@ -204,17 +207,18 @@ public abstract class Pass {
 
 }
 
-public class MemberPass {
+public class MemberPass extends Pass {
 
   private int balance;
   private String name;
 
-  protected void pay(BikeType bike) {
-    balance += bike.getPrize();
-  }
-
   protected boolean canAfford() {
     return true;
+  }
+
+  public void ride(BikeType bike) {
+    super.ride(bike);
+    balance += bike.getPrize();
   }
 
   public String toString() {
@@ -224,15 +228,13 @@ public class MemberPass {
 
 }
 
-public class VisitorPass {
+public class VisitorPass extends Pass {
 
   private int maxRides;
 
   protected boolean canAfford() {
     return usess < maxRides;
   }
-
-  protected void pay() {}
 
   public String toString() {
     return "Visitor %s with max rides %s".formatted(super.toString(), maxRides);

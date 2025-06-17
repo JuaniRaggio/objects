@@ -40,12 +40,15 @@ sorter() {
 }
 
 ```
+= Clases abstractas
+
+- Los constructores no pueden ser publicos
 
 = Generales
 
-- Checkear de retornar bien los valores
+- Checkear de retornar bien los valores. *Me paso varias veces* cuando hay que
+retornar this, pongo bien el valor de retorno pero me olvido de devolverlo
 
 - No olvidarse de implementar metodos aunque sean getters prestarle mucha
 atencion a los metodos que se llaman en el test
-
 
