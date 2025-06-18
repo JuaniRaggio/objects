@@ -156,7 +156,7 @@ public class VideoGameLibrary implements Iterable<VideoGame> {
 ```
 
 
-= Ejercicio 3
+= Ejercicio 3 - Jodido
 
 Administracion de reservas de un hotel
 
@@ -280,11 +280,4 @@ public class CannotBookException extends Exception {
 }
 
 ```
-
-
-
-
-
-
-
 
