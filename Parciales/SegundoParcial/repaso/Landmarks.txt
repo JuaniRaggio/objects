@@ -1,0 +1,84 @@
+public class TravelGuide {
+
+  private Map<String, Map<String, Set<Landmark>>> guide = new HashMap<>();
+
+  private void existLandmark(String countryName, String cityName, String cityDestination, Landmark llm) {
+    if (!guide.get(countryName).get(cityName).contains(llm))
+      throw new IllegalArgumentException("Landmark does not exist");
+  }
+
+  private boolean existCity(String countryName, String cityName, String msg) {
+    if (!guide.get(countryName).containsKey(cityName))
+      throw new IllegalArgumentException("%s city does not exist at country".formatted(msg));
+  }
+
+  private boolean existCityAtCountry(String countryName, String cityName) {
+    return existCountry(countryName) && existCity(cityName);
+  }
+
+  private boolean existCountry(String countryName) {
+    if (!guide.containsKey(countryName))
+      throw new IllegalArgumentException("Country does not exist");
+  }
+
+  public void addLandmark(String countryName, String cityName, Landmark spot) {
+    guide.putIfAbsent(countryName, new TreeMap<>());
+    guide.get(countryName).putIfAbsent(cityName, new TreeSet<>());
+  }
+
+  public int landmarksCount(String countryName, String cityName) {
+    return guide.getOrDefault(countryName, new TreeMap<>()).getOrDefault(cityName, new Set<>()).size();
+  }
+
+  public int landmarksCount(String countryName) {
+    int counter = 0;
+    for (Set<Landmark> llms : guide.getOrDefault(countryName, new TreeMap<>()).values()) {
+      counter += llms.size();
+    }
+    return counter;
+  }
+
+  public Collection<Landmark> getLandmarksFromCountry(String countryName) {
+    List<Landmark> llms = new ArrayList<>();
+    for (String city : guide.getOrDefault(countryName, new ArrayList<>())) {
+      llms.addAll(getLandmarksFromCity(countryName, city));
+    }
+    return llms;
+  }
+
+  public Collection<Landmark> getLandmarksFromCity(String countryName, String cityName) {
+    return guide.getOrDefault(countryName, new ArrayList<>()).getOrDefault(cityName, new ArrayList<>());
+  }
+
+  public void moveLandmark(String countryName, String cityOrigin, String cityDestination, Landmark lm) {
+    existCountry(countryName);
+    existCity(countryName, cityOrigin, "Origin");
+    existLandmark(countryName, cityOrigin, cityDestination);
+    guide.get(countryName).get(cityOrigin).remove(lm);
+    guide.get(countryName).addLandmark(countryName, cityDestination, lm);
+  }
+  
+}
+
+public class Landmark implements Comparable <Landmark> {
+
+  private String name;
+  private double points;
+
+  public Landmark(String name, double points) {
+    this.name = name;
+    this.points = points;
+  }
+
+  public int compareTo(Landmark other) {
+    int cmp = Double.comparator(other.points, this.points);
+    if (cmp == 0)
+      return name.compareTo(other.name);
+    return cmp;
+  }
+
+  public String toString() {
+    return "# %s # %g #".formatted(name, points);
+  }
+
+}

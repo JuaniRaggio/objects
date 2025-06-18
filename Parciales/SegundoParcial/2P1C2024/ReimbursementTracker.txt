@@ -1,0 +1,70 @@
+
+public class ReimbursementTracker {
+  // YearMonth es Comparable
+
+  private Map<String, ClientData> clients = new HashMap<>();
+
+  private boolean isCurrentClient(String name) {
+    return clients.containsKey(name)
+  }
+
+  private void checkCurrentClient(String name) {
+    if(!isCurrentClient(name))
+      throw new NoSuchElementException("Client is not registered");
+  }
+
+  public void addReimbursment(String name, MonthYear date, int amount) {
+    checkCurrentClient(name);
+    clients.get(name).addReimbursment(date, amount);
+  }
+
+  public Set<Map.Entry<MonthYear, Integer>> getReimbursements(String name, MonthYear from, MonthYear
+  to) {
+    checkCurrentClient(name);
+    return clients.get(name).getReimbursements(from, to);}
+
+
+  public int getRemainingReimbursement(String name, MonthYear date) {
+    checkCurrentClient(name);
+    return clients.get(name).getRemaining(date);
+  }
+
+  public void registerClient(String name, int max) {
+    if (isCurrentClient(name))
+      throw new IllegalArgumentException("ClientAlready registered");
+    clients.put(name, new ClientData(max, name));
+  }
+
+  private class ClientData {
+
+    private SortedMap<MonthYear, Integer> registers = new TreeMap<>();
+
+    private int max;
+
+    private String clientName;
+
+    public addReimbursment(MonthYear date, Integer amount) {
+      registers.put(date, registers.getOrDefault(date, 0) + amount);
+    }
+
+    public ClientData(int max, String name) {
+      this.max = max;
+      clientName = name;
+    }
+
+    public getRemaining(MonthYear date) { return max - registers.getOrDefault(date, 0); }
+
+    public int getMax() { return max; }
+
+    public Set<Map.Entry<MonthYear, Integer>> getReimbursements(MonthYear from, MonthYear to) {
+      return registers.subMap(from, to).entrySet();
+    }
+  
+  }
+
+}
+
+// A: Set<Map.Entry<MonthYear, Integer>>
+// B: samReimbursements.getValue()
+// C: samReimbursements.getKey()
+

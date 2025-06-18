@@ -1,0 +1,61 @@
+class Exhibition
+ def initialize(name, theme)
+   @name = name
+   @theme = theme
+ end
+
+ def to_s
+   "Exhibition #{@name} of theme #{@theme}"
+ end
+end
+
+class Museum
+
+  def initialize
+    @pavilions = {}
+  end
+
+  def add_exhibition(pavilion, name, description)
+    @pavilions[pavilion] = [] unless @pavilions.key?(pavilion)
+    raise 'Cannot add exhibition' unless @pavilions[pavilion].length < pavilion.max && pavilion.can_add?(description)
+    @pavilions[pavilion] << Exhibition.new(name, description)
+  end
+
+  def pavilion_exhibits(pavilion) = @pavilions[pavilion]
+
+end
+
+// Type1: Maximum capacity
+class Pavilion
+
+  def initialize(name, max)
+    @name = name
+    @max = max
+  end
+
+  def ==(other)
+    return nil unless other.is_a?(Pavilion)
+    [@name] == [other.name]
+  end
+
+  def can_add?(_description) = true
+
+  alias_method :eql?, :==
+
+  attr_reader :max
+
+end
+
+// Type2: Maximum capacity and Theme
+
+class ThemedPavilion < Pavilion
+
+  def initialize(name, max, theme)
+    super(name, max)
+    @theme = theme
+  end
+
+  def can_add?(description) = @theme == description
+
+end
+

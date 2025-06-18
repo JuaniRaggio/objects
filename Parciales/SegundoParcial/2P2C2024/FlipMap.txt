@@ -1,0 +1,35 @@
+//*** FlipMap
+// Claves -> Valores
+// Valores -> Claves
+// Entonces cuando quiera agregar dos valores repetidos, hay que hacer una operacion:
+// ya sea pisar la ultima clave / encadenarla / lo que me pidan
+// *** Nos piden que la encadenemos con una funcion que se pasa por parametro
+
+// *** Metodos:
+// flip(Function)
+// flipInverse(Function)
+
+public class FlipMap <K extends Comparable<? super K>, V extends Comparable<? super V>> extends TreeMap<>() {
+
+  private Map<V, K> flipper(BinaryOperator<K> cat, Set<Map.Entry<K, V>> iterable, K baseCase) {
+    Map<V, K> fliped = new HashMap<>();
+    for (Map.Entry<K, V> entry : iterable) {
+      if (!fliped.containsKey(entry.key())) {
+        fliped.put(entry.value(), cat.apply(baseCase, entry.key()));
+      } else {
+        fliped.put(entry.value(), cat.apply(flipped.get(entry.value()), entry.key());
+      }
+    }
+    return fliped;
+  }
+
+  public Map<V, K> flip(K base, BinaryOperator<K> cat) {
+    return flipper(cat, this.entrySet(), base);
+  }
+
+  public Map<V, K> flipInverse(K base, BinaryOperator<K> cat) {
+    return flipper(cat, this.entrySet().reversed(), base);
+  }
+
+}
+

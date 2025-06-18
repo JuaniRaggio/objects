@@ -1,0 +1,72 @@
+class Restaurant
+
+  def initialize(restaurant_name)
+    @name = restaurant_name
+    @sections = {}
+  end
+
+  def add_table(section, table_id, max_customers)
+    if !@sections.key?(section)
+      @sections[section] = SortedSet.new
+    end
+    @sections[section] << Table.new (table_id, max_customers)
+  end
+
+  def tables(section)
+    raise 'Section does not exist' unless @sections.key?(section)
+    return @sections[section]
+  end
+
+  def sections_count = @sections.size
+
+  def tables_count(section) = tables(section).size
+
+end
+
+class Section
+
+  def initialize(section_name)
+    @name = section_name
+  end
+
+  def ==(other)
+    return false unless other.is_a?(Section)
+    return @name == other.name
+  end
+
+  def hash = [@name].hash
+
+  def to_s = @name.to_s
+
+  alias_method :eql?, :==
+
+  protected
+
+  attr_reader :name
+
+end
+
+class Table
+  include Comparable
+
+  def initialize(table_id, max_customers, section)
+    @id = table_id
+    @max_customers = max_customers
+    @section = section
+  end
+
+  def <=>(other)
+    return nil unless other.is_a?(Table)
+    [other.max_customers, @id] <=> [@max_customers, other.id]
+  end
+
+  def to_s = "Table #{@id} for #{@max_customers} in section #{@section}"
+
+  protected
+
+  attr_reader :id, max_customers
+
+end
+
+
+

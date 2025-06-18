@@ -1,0 +1,36 @@
+public interface GroupMatchCollection<T> extends List<T> {
+
+  public void addMatchPredicate(Predicate <T> tester);
+
+  // Aca habia puesto Set como un boludo
+  public Map<Integer, List<T>> groupingByMatches();
+
+}
+
+public class GroupMatchCollectionImpl<T> extends ArrayList<T> implements GroupMatchCollection<T> {
+
+  private Set<Predicate <T>> testers = new HashSet<>();
+
+  public void addMatchPredicate(Predicate <T> tester) { testers.add(tester); }
+
+  private testsPassed(T element) {
+    int counter = 0;
+    for (Predicate<T> test : testers) {
+      counter += test.test(element) ? 1:0;
+    }
+    return counter;
+  }
+
+  public Map <Integer, List<T>> groupingByMatches() {
+    // Estoy teniendo en cuenta que puede pasar que haya muchos espacios
+    // vacios, por eso un TreeSet<>
+    Map<Integer, List<T>> grouped = new TreeMap<>();
+    for (T element : this) {
+      grouped.putIfAbsent(testsPassed(element), new ArrayList<>());
+      grouped.get(correspondingGroup).add(element);
+    }
+    return grouped;
+  }
+
+}
+
