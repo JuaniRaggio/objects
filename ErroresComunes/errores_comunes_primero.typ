@@ -57,3 +57,60 @@ atencion a los metodos que se llaman en el test
 - *No leakear atributos*: Hacer todas las operaciones posibles dentro de los
 enums, no hacer getters de los atributos porque no corresponde
 
+- Importante tener en cuenta .values() que retorna arreglo con las instancias
+de todos los enums ordenadas por ordial()
+
+```java
+
+public enum Level {
+
+  // Es mejor hacer Level.values()[ordial() + 1]
+  // porque si se quiere agregar un nivel intermedio, habria que cambiar todo
+  // pero no tuve en cuenta .values() la verdad (devuelve un arreglo con las
+  // instancias de los enums)
+  ENTRY(0.1, 100) {
+
+    private Level levelUp() {
+      return GOLD;
+    }
+
+  }, GOLD(0.2, 600) {
+
+    private Level levelUp() {
+      return PREMIUM;
+    }
+
+  }, PREMIUM(0.5, 0) {
+
+    private Level levelUp() {
+      return this;
+    }
+
+  };
+
+  private final double multiplier;
+  private final int limit;
+
+  private Level(double multiplier, int limit) {
+    this.multiplier = multiplier;
+    this.limit = limit;
+  }
+
+  private Level updateLevel(int points, int limit) {
+    if (points >= limit) {
+      return levelUp();
+    }
+    return this;
+  }
+
+  public Level getUpdatedLevel(int points) {
+    return updateLevel(points, limit);
+  }
+
+  public int getCorrespondingPointsOfPurchase(int purchase) {
+    return (int) (purchase * multiplier);
+  }
+
+}
+```
+
