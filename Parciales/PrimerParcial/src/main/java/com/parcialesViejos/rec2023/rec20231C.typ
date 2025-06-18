@@ -163,10 +163,18 @@ public enum BikeType {
     this.prizePerUnit = prize;
     this.minimum = minimumRequired;
   }
+  
+  // Esta mal hacer getters en los enums, corresponde que haga las verificaciones
+  // el mismo y no leakee los atributos
+  // public double getPrizePerUnit() { return prizePerUnit; }
+  public int getUpdatedBalance(double oldBalance) {
+    return oldBalance + prizePerUnit;
+  }
 
-  public double getPrizePerUnit() { return prizePerUnit; }
-
-  public int getMinimumRequired() { return minimum; }
+  // public int getMinimumRequired() { return minimum; }
+  public boolean verifyMinumum(int uses) {
+    return usess < bike.getMinumumRequired();
+  }
 
 }
 
@@ -187,7 +195,8 @@ public abstract class Pass {
   protected abstract boolean canAfford(BikeType bike);
 
   protected boolean canRide(BikeType bike) {
-    return usess < bike.getMinumumRequired();
+    return bike.verifyMinimum(uses);
+    // return usess < bike.getMinumumRequired();
   }
 
   protected void checkRideStatus(BikeType bike) {
@@ -218,7 +227,7 @@ public class MemberPass extends Pass {
 
   public void ride(BikeType bike) {
     super.ride(bike);
-    balance += bike.getPrize();
+    balance = bike.getUpdatedBalance(balance);
   }
 
   public String toString() {

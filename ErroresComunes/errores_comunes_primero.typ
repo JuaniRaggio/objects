@@ -52,3 +52,8 @@ retornar this, pongo bien el valor de retorno pero me olvido de devolverlo
 - No olvidarse de implementar metodos aunque sean getters prestarle mucha
 atencion a los metodos que se llaman en el test
 
+= Enums
+
+- *No leakear atributos*: Hacer todas las operaciones posibles dentro de los
+enums, no hacer getters de los atributos porque no corresponde
+

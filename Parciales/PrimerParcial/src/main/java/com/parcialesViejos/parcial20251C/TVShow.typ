@@ -56,7 +56,6 @@ public class TVShow implements Iterable<TVEpisode> {
     if (ep <= 0) {
       throw new IllegalArgumentException("La cantidad de episodios debe ser positiva");
     }
-
     this.ep = ep;
   }
 
