@@ -56,6 +56,10 @@ comprar*)
 
 public enum Level {
 
+  // Es mejor hacer Level.values()[ordial() + 1]
+  // porque si se quiere agregar un nivel intermedio, habria que cambiar todo
+  // pero no tuve en cuenta .values() la verdad (devuelve un arreglo con las
+  // instancias de los enums)
   ENTRY(0.1, 100) {
 
     private Level levelUp() {
