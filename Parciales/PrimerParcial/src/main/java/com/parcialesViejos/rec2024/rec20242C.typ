@@ -156,7 +156,7 @@ public class VideoGameLibrary implements Iterable<VideoGame> {
 ```
 
 
-= Ejercicio 3 - Jodido
+= Ejercicio 3 - Raro
 
 Administracion de reservas de un hotel
 
