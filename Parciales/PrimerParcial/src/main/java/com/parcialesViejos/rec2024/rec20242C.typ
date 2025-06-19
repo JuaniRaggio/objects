@@ -160,7 +160,6 @@ public class VideoGameLibrary implements Iterable<VideoGame> {
 
 Administracion de reservas de un hotel
 
-
 - Clientes:
   - Reservan en base a un tipo, cant hues y cant noches (verificar no negativos)
 
