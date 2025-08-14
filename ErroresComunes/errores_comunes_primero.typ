@@ -42,7 +42,7 @@ sorter() {
 ```
 = Clases abstractas
 
-- Los constructores son publicos pero no pueden instanciarse, solo tiene sentido
+- Los *constructores son publicos* pero *no pueden instanciarse*, solo tiene sentido
 que una clase hija llame a este metodo usando super()
 
 = Generales
