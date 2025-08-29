@@ -2,13 +2,13 @@ package com.talleres.tallerFerrys;
 
 import java.util.function.Supplier;
 
-public abstract class Port {
+public class Port {
 
   protected String name;
   protected FerryCompany company;
   protected int docks, ocupiedDocks = 0;
 
-  protected Port(String name, FerryCompany company, int docks) {
+  public Port(String name, FerryCompany company, int docks) {
     this.name = name;
     this.company = company;
     this.docks = docks;
