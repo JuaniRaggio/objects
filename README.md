@@ -1,4 +1,4 @@
-# Object Oriented Programming
+# Programacion Orientada a Objetos
 
 Este repositorio, **`JuaniRaggio/objects`**, está dedicado a la **Programación Orientada a Objetos (POO) en Java y al uso efectivo del JavaCollectionFramework**. El objetivo es brindar herramientas y soluciones extra, como opciones para la resolucion de ejercicios de la materia Programacion Orientada a Objetos dada en el **Instituto Tecnologico de Buenos Aires**
 
