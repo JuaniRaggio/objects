@@ -30,3 +30,6 @@ El repositorio está organizado en los siguientes directorios para facilitar la 
 *   ### **`Teoria`**
     *   En este apartado se encuentra el **contenido teórico** sobre Programación Orientada a Objetos, los principios de diseño y el funcionamiento del JavaCollectionFramework. Puede incluir documentos, presentaciones o notas explicativas
 
+*   ### **`Ayudantia`**
+    *   Este directorio tiene notas extra que fui tomando en el transcurso de mi participacion como ayudante
+
