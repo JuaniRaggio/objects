@@ -13,10 +13,10 @@ Los temas principales abordados en este repositorio incluye:
 
 ## Estructura del Repositorio
 
-El repositorio está organizado en los siguientes directorios para facilitar la navegación y el acceso al contenido [3]:
+El repositorio está organizado en los siguientes directorios para facilitar la navegación y el acceso al contenido:
 
 *   ### **`ErroresComunes`**
-    *   Aquí se recopilan ejemplos y explicaciones de **errores comunes** que encontre al trabajar con Java, POO y el JavaCollectionFramework. Su propósito es ayudar a identificar y corregir problemas de manera más eficiente [3].
+    *   Aquí se recopilan ejemplos y explicaciones de **errores comunes** que encontre al trabajar con Java, POO y el JavaCollectionFramework. Su propósito es ayudar a identificar y corregir problemas de manera más eficiente.
 
 *   ### **`JavaITBA`**
     *   Este directorio alberga los ejercicios impartidos en el **ITBA (Instituto Tecnológico de Buenos Aires)**. Incluye casi todos los ejercicios de las guias de ejercicios dadas
