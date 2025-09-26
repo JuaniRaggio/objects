@@ -7,6 +7,10 @@ out
 *.out
 *.toc
 
+.settings
+.classpath
+.project
+
 # Compiled class file
 *.class
 clase1
